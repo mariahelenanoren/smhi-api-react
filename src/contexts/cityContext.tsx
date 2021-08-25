@@ -9,7 +9,8 @@ interface City {
 }
 
 interface State {
-    cities: City[];
+    allCities: City[];
+    savedCities: City[];
 }
 
 interface Props {
@@ -22,13 +23,15 @@ interface Context extends State {
 }
 
 const CityContext = createContext<Context>({
-    cities: [],
+    allCities: [],
+    savedCities: [],
     addNewCity: () => {},
     removeCity: () => {},
 });
 
 function CityProvider(props: Props) {
-    const [cities, setCities] = useState<City[]>([]);
+    const [savedCities, setSavedCities] = useState<City[]>([]);
+    const [allCities, setAllCities] = useState<City[]>([]);
 
     useEffect(() => {
         async function fetchCities() {
@@ -53,7 +56,7 @@ function CityProvider(props: Props) {
                     longitude: i[4],
                 };
                 if (item !== list[0]) {
-                    setCities((prevState) => [...prevState, cityObject]);
+                    setAllCities((prevState) => [...prevState, cityObject]);
                 }
             });
         }
@@ -61,17 +64,18 @@ function CityProvider(props: Props) {
     }, []);
 
     const addNewCity = (city: City) => {
-        setCities((prevState) => [...prevState, city]);
+        setSavedCities((prevState) => [...prevState, city]);
     };
 
     const removeCity = (city: City) => {
-        setCities(cities.filter((c) => c !== city));
+        setSavedCities(savedCities.filter((c) => c !== city));
     };
 
     return (
         <CityContext.Provider
             value={{
-                cities,
+                allCities,
+                savedCities,
                 addNewCity,
                 removeCity,
             }}
