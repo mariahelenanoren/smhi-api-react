@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { City, CityContext } from './cityContext';
+import { City } from './cityContext';
 
 /* ("https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/" + lon + "/lat/" + lat + "/data.json") */
 
@@ -7,16 +7,21 @@ interface Props {
     children: Object;
 }
 
-export const WeatherContext = createContext<any>({
-    getForecast: (city: City) => {},
+interface Context {
+    getForecast: (city: City) => void;
+}
+
+export const WeatherContext = createContext<Context>({
+    getForecast: () => {},
 });
 
 function WeatherProvider(props: Props) {
     const getForecast = async (city: City) => {
-        const result = await fetch(
+        const response = await fetch(
             `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${city.longitude}/lat/${city.latitude}/data.json`
         );
-        console.log(result);
+        const forecast = await response.json();
+        console.log(forecast);
     };
 
     return (

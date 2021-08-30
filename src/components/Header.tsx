@@ -10,10 +10,12 @@ import { Autocomplete } from '@material-ui/lab';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { City, CityContext } from '../contexts/cityContext';
+import { WeatherContext } from '../contexts/weatherContext';
 
 export default function Header() {
     const classes = useStyles();
     const { allCities } = useContext(CityContext);
+    const { getForecast } = useContext(WeatherContext);
 
     return (
         <Container className={classes.root} maxWidth='md'>
@@ -27,13 +29,13 @@ export default function Header() {
             </div>
             <div>
                 <Autocomplete
-                    freeSolo
                     disableClearable
                     forcePopupIcon={false}
                     options={allCities}
                     getOptionLabel={(city: City) =>
                         city.locality + ', ' + city.municipality
                     }
+                    onChange={(event, value) => getForecast(value)}
                     ListboxProps={{
                         style: { color: '#000000', backgroundColor: '#ffffff' },
                     }}
@@ -78,7 +80,7 @@ const useStyles = makeStyles({
                 fontWeight: '400',
                 color: '#000000',
                 textDecoration: 'none',
-                '&:hover': {
+                '& p:hover': {
                     textDecoration: 'underline',
                 },
             },
