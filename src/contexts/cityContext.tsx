@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 
-interface City {
+export interface City {
     locality: string;
     municipality: string;
     county: string;
@@ -22,7 +22,7 @@ interface Context extends State {
     removeCity: (city: City) => void;
 }
 
-const CityContext = createContext<Context>({
+export const CityContext = createContext<Context>({
     allCities: [],
     savedCities: [],
     addNewCity: () => {},

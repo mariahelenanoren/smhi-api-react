@@ -23,6 +23,6 @@ export default function Layout() {
 const useStyles = makeStyles((theme) => ({
     root: {
         height: '100%',
-        backgroundColor: theme.palette.primary.dark,
+        backgroundColor: '#7a420a',
     },
 }));
