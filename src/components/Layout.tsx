@@ -13,7 +13,7 @@ export default function Layout() {
                 <Header />
                 <Switch>
                     <Route path='/' exact component={HomeView} />
-                    <Route path='/:name?' component={DetailView} />
+                    <Route path='/:locality' component={DetailView} />
                 </Switch>
             </Router>
         </Box>

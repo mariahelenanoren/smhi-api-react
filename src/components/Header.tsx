@@ -8,14 +8,18 @@ import {
 import SearchIcon from '@material-ui/icons/Search';
 import { Autocomplete } from '@material-ui/lab';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { City, CityContext } from '../contexts/cityContext';
-import { WeatherContext } from '../contexts/weatherContext';
 
 export default function Header() {
     const classes = useStyles();
+    const history = useHistory();
+
     const { allCities } = useContext(CityContext);
-    const { getForecast } = useContext(WeatherContext);
+
+    const handleSearch = (city: City) => {
+        history.push(`/${city.locality}`, city);
+    };
 
     return (
         <Container className={classes.root} maxWidth='md'>
@@ -36,7 +40,7 @@ export default function Header() {
                     getOptionLabel={(city: City) =>
                         city.locality + ', ' + city.municipality
                     }
-                    onChange={(event, value) => getForecast(value)}
+                    onChange={(event, value) => handleSearch(value)}
                     ListboxProps={{
                         style: { color: '#000000', backgroundColor: '#ffffff' },
                     }}

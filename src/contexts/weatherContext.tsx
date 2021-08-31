@@ -1,14 +1,23 @@
 import { createContext } from 'react';
 import { City } from './cityContext';
 
-/* ("https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/" + lon + "/lat/" + lat + "/data.json") */
+export interface Parameters {
+    level: number;
+    levelType: string;
+    name: string;
+    unit: string;
+    values: number[];
+}
 
+export interface Forecast {
+    parameters: Parameters[];
+}
 interface Props {
     children: Object;
 }
 
 interface Context {
-    getForecast: (city: City) => void;
+    getForecast: (city: City) => Promise<Forecast | undefined> | void;
 }
 
 export const WeatherContext = createContext<Context>({
@@ -17,11 +26,17 @@ export const WeatherContext = createContext<Context>({
 
 function WeatherProvider(props: Props) {
     const getForecast = async (city: City) => {
-        const response = await fetch(
-            `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${city.longitude}/lat/${city.latitude}/data.json`
-        );
-        const forecast = await response.json();
-        console.log(forecast);
+        try {
+            const response = await fetch(
+                `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${city.longitude}/lat/${city.latitude}/data.json`
+            );
+            const result = await response.json();
+            const parameters: Parameters[] = await result.timeSeries[0]
+                .parameters;
+            return { parameters: parameters };
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (
