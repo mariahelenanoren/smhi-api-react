@@ -30,6 +30,7 @@ export default function Header() {
             <div>
                 <Autocomplete
                     disableClearable
+                    className={classes.autocomplete}
                     forcePopupIcon={false}
                     options={allCities}
                     getOptionLabel={(city: City) =>
@@ -43,10 +44,12 @@ export default function Header() {
                         <TextField
                             {...params}
                             className={classes.textField}
-                            label='Sök stad eller ort'
+                            placeholder='Sök stad eller ort'
                             variant='outlined'
+                            size='small'
                             InputProps={{
                                 ...params.InputProps,
+                                classes: { input: classes.input },
                                 endAdornment: (
                                     <InputAdornment position='end'>
                                         <SearchIcon />
@@ -63,6 +66,9 @@ export default function Header() {
 
 const useStyles = makeStyles({
     root: {
+        height: '5rem',
+        position: 'relative',
+        zIndex: 1,
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -86,8 +92,26 @@ const useStyles = makeStyles({
             },
         },
     },
+    autocomplete: {
+        borderRadius: '5rem',
+        '& .MuiFormControl-root': {
+            backgroundColor: 'rgba(250, 250, 250, 0.3)',
+        },
+        '& fieldset': {
+            border: 'none',
+        },
+    },
     textField: {
+        borderRadius: '5rem',
         width: '15rem',
-        paddingRight: '0 !important',
+        backgroundColor: 'rgba(250, 250, 250, 0.2)',
+        '& svg': {
+            paddingRight: '0.3rem',
+        },
+    },
+    input: {
+        '&::placeholder': {
+            opacity: '100%',
+        },
     },
 });

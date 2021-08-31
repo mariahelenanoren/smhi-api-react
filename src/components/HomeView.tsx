@@ -20,8 +20,10 @@ export default function HomeView() {
 
 const useStyles = makeStyles({
     backgroundImage: {
+        marginTop: '-5rem',
         height: '25rem',
         width: '100%',
         objectFit: 'cover',
+        opacity: '0.2',
     },
 });
