@@ -2,19 +2,13 @@ import { Box, Container } from '@material-ui/core';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { useEffect } from 'react';
-import { RouteComponentProps, useHistory, withRouter } from 'react-router-dom';
+import { useHistory, withRouter } from 'react-router-dom';
 import { City } from '../contexts/cityContext';
 import { Forecast, WeatherContext } from '../contexts/weatherContext';
+import ForecastDetails from './ForecastDetails';
 import ForecastHeader from './ForecastHeader';
 
-interface Props
-    extends RouteComponentProps<
-        {},
-        {},
-        { location: { state: { city: City } } }
-    > {}
-
-function ForecastView(props: Props) {
+function ForecastView() {
     const history = useHistory<City>();
     const city = history.location.state;
     const { getForecast } = useContext(WeatherContext);
@@ -31,7 +25,14 @@ function ForecastView(props: Props) {
     return (
         <Box>
             <Container maxWidth='md'>
-                {forecast ? <ForecastHeader city={city} /> : <p>Loading...</p>}
+                {forecast ? (
+                    <>
+                        <ForecastHeader city={city} />
+                        <ForecastDetails city={city} forecast={forecast} />
+                    </>
+                ) : (
+                    <p>Loading...</p>
+                )}
             </Container>
         </Box>
     );

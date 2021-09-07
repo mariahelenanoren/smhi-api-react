@@ -26,7 +26,6 @@ export default function ForecastHeader(props: Props) {
 
     /* Sets the initial favorite state of the city */
     useEffect(() => {
-        console.log(savedCities);
         if (savedCities.find((c) => c === city)) {
             setFavorite(true);
         } else {
@@ -39,7 +38,7 @@ export default function ForecastHeader(props: Props) {
             <div className={classes.row}>
                 <div>
                     <Typography variant='overline' color='primary'>
-                        {city.county}
+                        {city.municipality}
                     </Typography>
                     <Typography variant='h2' color='primary'>
                         {city.locality}
