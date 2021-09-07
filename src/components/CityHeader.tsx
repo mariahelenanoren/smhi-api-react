@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { City } from '../contexts/cityContext';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import { useState } from 'react';
+import { CityContext } from '../contexts/cityContext';
+import { useContext, useEffect, useState } from 'react';
 
 interface Props {
     city: City;
@@ -11,12 +12,27 @@ interface Props {
 
 export default function CityHeader(props: Props) {
     const { city } = props;
+    const { addNewCity, removeCity, savedCities } = useContext(CityContext);
     const classes = useStyles();
-    const [isFavorite, setFavorite] = useState<boolean>(false);
+    const [isFavorite, setFavorite] = useState<boolean>();
 
     const handleToggleFavorite = () => {
-        setFavorite(!isFavorite);
+        if (!isFavorite) {
+            addNewCity(city);
+        } else {
+            removeCity(city);
+        }
     };
+
+    /* Sets the initial favorite state of the city */
+    useEffect(() => {
+        console.log(savedCities);
+        if (savedCities.find((c) => c === city)) {
+            setFavorite(true);
+        } else {
+            setFavorite(false);
+        }
+    }, [city, savedCities]);
 
     return (
         <Box className={classes.root}>
