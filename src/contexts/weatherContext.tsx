@@ -31,11 +31,30 @@ function WeatherProvider(props: Props) {
                 `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${city.longitude}/lat/${city.latitude}/data.json`
             );
             const result = await response.json();
-            const parameters: Parameters[] = await result.timeSeries[0]
-                .parameters;
-            return { parameters: parameters };
+            const forecast = getAccurateTimeSeries(await result.timeSeries);
+            return { parameters: forecast.parameters };
         } catch (error) {
             console.error(error);
+        }
+    };
+
+    const getAccurateTimeSeries = (timeSeries: any) => {
+        console.log(timeSeries);
+        const today = new Date();
+        let date = today.getDate().toString();
+        if (date.length < 2) {
+            date = '0' + date;
+        }
+        let hour = today.getHours().toString();
+        if (hour.length < 2) {
+            hour = '0' + hour;
+        }
+        for (const time of timeSeries) {
+            const validDate = time.validTime.slice(8, 10);
+            const validHour = time.validTime.slice(11, 13);
+            if (validDate === date && validHour === hour) {
+                return time;
+            }
         }
     };
 
