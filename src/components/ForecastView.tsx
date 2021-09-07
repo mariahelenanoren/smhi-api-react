@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { RouteComponentProps, useHistory, withRouter } from 'react-router-dom';
 import { City } from '../contexts/cityContext';
 import { Forecast, WeatherContext } from '../contexts/weatherContext';
-import CityHeader from './CityHeader';
+import ForecastHeader from './ForecastHeader';
 
 interface Props
     extends RouteComponentProps<
@@ -14,7 +14,7 @@ interface Props
         { location: { state: { city: City } } }
     > {}
 
-function DetailView(props: Props) {
+function ForecastView(props: Props) {
     const history = useHistory<City>();
     const city = history.location.state;
     const { getForecast } = useContext(WeatherContext);
@@ -30,11 +30,11 @@ function DetailView(props: Props) {
 
     return (
         <Box>
-            <Container maxWidth='lg'>
-                {forecast ? <CityHeader city={city} /> : <p>Loading...</p>}
+            <Container maxWidth='md'>
+                {forecast ? <ForecastHeader city={city} /> : <p>Loading...</p>}
             </Container>
         </Box>
     );
 }
 
-export default withRouter(DetailView);
+export default withRouter(ForecastView);

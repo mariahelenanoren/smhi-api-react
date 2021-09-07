@@ -10,7 +10,7 @@ interface Props {
     city: City;
 }
 
-export default function CityHeader(props: Props) {
+export default function ForecastHeader(props: Props) {
     const { city } = props;
     const { addNewCity, removeCity, savedCities } = useContext(CityContext);
     const classes = useStyles();

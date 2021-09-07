@@ -1,6 +1,6 @@
 import { Box, makeStyles } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import DetailView from './DetailView';
+import ForecastView from './ForecastView';
 import Header from './Header';
 import HomeView from './HomeView';
 
@@ -13,7 +13,7 @@ export default function Layout() {
                 <Header />
                 <Switch>
                     <Route path='/' exact component={HomeView} />
-                    <Route path='/:locality' component={DetailView} />
+                    <Route path='/:locality' component={ForecastView} />
                 </Switch>
             </Router>
         </Box>
