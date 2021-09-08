@@ -18,7 +18,7 @@ export default function Header() {
     const { allCities } = useContext(CityContext);
 
     const handleSearch = (city: City) => {
-        history.push(`/${city.locality}`, city);
+        history.push(`/${city.municipality}+${city.locality}`, city);
     };
 
     return (
@@ -48,7 +48,7 @@ export default function Header() {
                         <TextField
                             {...params}
                             className={classes.textField}
-                            placeholder='Sök stad eller ort'
+                            placeholder='Sök stad eller ort...'
                             variant='outlined'
                             size='small'
                             InputProps={{
@@ -97,8 +97,10 @@ const useStyles = makeStyles({
         },
     },
     autocomplete: {
-        borderRadius: '5rem',
+        /* borderRadius: '5rem', */
         '& .MuiFormControl-root': {
+            /* paddingRight: '0.5rem',
+            paddingLeft: '0.5rem', */
             backgroundColor: 'rgba(250, 250, 250, 0.3)',
         },
         '& fieldset': {
@@ -106,12 +108,9 @@ const useStyles = makeStyles({
         },
     },
     textField: {
-        borderRadius: '5rem',
+        /* borderRadius: '5rem', */
         width: '15rem',
         backgroundColor: 'rgba(250, 250, 250, 0.2)',
-        '& svg': {
-            paddingRight: '0.3rem',
-        },
     },
     input: {
         '&::placeholder': {

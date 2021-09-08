@@ -10,6 +10,7 @@ export interface Parameters {
 }
 
 export interface Forecast {
+    validTime: string;
     parameters: Parameters[];
 }
 interface Props {
@@ -17,29 +18,34 @@ interface Props {
 }
 
 interface Context {
-    getForecast: (city: City) => Promise<Forecast | undefined> | void;
+    getForecasts: (city: City) => Promise<Forecast[] | undefined> | void;
 }
 
 export const WeatherContext = createContext<Context>({
-    getForecast: () => {},
+    getForecasts: () => {},
 });
 
 function WeatherProvider(props: Props) {
-    const getForecast = async (city: City) => {
+    const getForecasts = async (city: City) => {
         try {
             const response = await fetch(
                 `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${city.longitude}/lat/${city.latitude}/data.json`
             );
             const result = await response.json();
-            const forecast = getAccurateTimeSeries(await result.timeSeries);
-            return { parameters: forecast.parameters };
+            const firstForecast = getAccurateTimeSeries(
+                await result.timeSeries
+            );
+            const forecasts = get24HForecast(
+                await result.timeSeries,
+                firstForecast
+            );
+            return forecasts;
         } catch (error) {
             console.error(error);
         }
     };
 
     const getAccurateTimeSeries = (timeSeries: any) => {
-        console.log(timeSeries);
         const today = new Date();
         let date = today.getDate().toString();
         if (date.length < 2) {
@@ -58,10 +64,21 @@ function WeatherProvider(props: Props) {
         }
     };
 
+    const get24HForecast = (timeSeries: any[], firstForecast: any) => {
+        const index = timeSeries.indexOf(firstForecast);
+        const forecasts: Forecast[] = [];
+        for (const time in timeSeries) {
+            if (Number(time) >= index && Number(time) < index + 24) {
+                forecasts.push(timeSeries[time]);
+            }
+        }
+        return forecasts;
+    };
+
     return (
         <WeatherContext.Provider
             value={{
-                getForecast,
+                getForecasts,
             }}
         >
             {props.children}
