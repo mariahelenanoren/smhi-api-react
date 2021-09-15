@@ -1,4 +1,4 @@
-import { Box, Container } from '@material-ui/core';
+import { Box, Container, makeStyles } from '@material-ui/core';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { useEffect } from 'react';
@@ -10,6 +10,7 @@ import ForecastHeader from '../components/forecast/ForecastHeader';
 import ForecastHorizontalBar from '../components/forecast/ForecastHorizontalBar';
 
 function ForecastView() {
+  const classes = useStyles();
   const history = useHistory<City>();
   const city = history.location.state;
   const { getForecasts } = useContext(WeatherContext);
@@ -25,7 +26,7 @@ function ForecastView() {
 
   return (
     <Box>
-      <Container maxWidth="md">
+      <Container className={classes.root} maxWidth="lg">
         {forecasts ? (
           <>
             <ForecastHeader city={city} />
@@ -41,3 +42,10 @@ function ForecastView() {
 }
 
 export default withRouter(ForecastView);
+
+const useStyles = makeStyles({
+  root: {
+    paddingRight: '8rem',
+    paddingLeft: '8rem',
+  },
+});
