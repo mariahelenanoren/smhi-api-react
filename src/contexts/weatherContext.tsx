@@ -19,28 +19,47 @@ interface Props {
 
 interface Context {
   getTodaysForecast: (city: City) => Promise<Forecast[] | undefined> | void;
+  getWeeklyForecasts: (city: City) => Promise<Forecast[] | undefined> | void;
 }
 
 export const WeatherContext = createContext<Context>({
   getTodaysForecast: () => {},
+  getWeeklyForecasts: () => {},
 });
 
 function WeatherProvider(props: Props) {
-  const getTodaysForecast = async (city: City) => {
+  const getForecasts = async (city: City) => {
     try {
       const response = await fetch(
         `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${city.longitude}/lat/${city.latitude}/data.json`
       );
       const result = await response.json();
-      const firstForecast = getAccurateTimeSeries(await result.timeSeries);
-      const todaysForecast = get24HForecast(
-        await result.timeSeries,
-        firstForecast
-      );
-      return todaysForecast;
+      return result;
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const getTodaysForecast = async (city: City) => {
+    const forecasts = await getForecasts(city);
+    const firstForecast = getAccurateTimeSeries(await forecasts.timeSeries);
+    const todaysForecast = get24HForecast(
+      await forecasts.timeSeries,
+      firstForecast
+    );
+    return todaysForecast;
+  };
+
+  const getWeeklyForecasts = async (city: City) => {
+    const data = await getForecasts(city);
+    const forecasts: Forecast[] = data.timeSeries;
+    const weeklyForecasts: Forecast[] = [];
+    for (const forecast of forecasts) {
+      if (forecast.validTime.slice(11, 13) === '12') {
+        weeklyForecasts.push(forecast);
+      }
+    }
+    return weeklyForecasts;
   };
 
   const getAccurateTimeSeries = (timeSeries: any) => {
@@ -64,19 +83,20 @@ function WeatherProvider(props: Props) {
 
   const get24HForecast = (timeSeries: any[], firstForecast: any) => {
     const index = timeSeries.indexOf(firstForecast);
-    const forecasts: Forecast[] = [];
+    const todaysForecast: Forecast[] = [];
     for (const time in timeSeries) {
       if (Number(time) >= index && Number(time) < index + 24) {
-        forecasts.push(timeSeries[time]);
+        todaysForecast.push(timeSeries[time]);
       }
     }
-    return forecasts;
+    return todaysForecast;
   };
 
   return (
     <WeatherContext.Provider
       value={{
         getTodaysForecast,
+        getWeeklyForecasts,
       }}
     >
       {props.children}

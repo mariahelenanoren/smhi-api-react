@@ -14,27 +14,29 @@ function ForecastView() {
   const classes = useStyles();
   const history = useHistory<City>();
   const city = history.location.state;
-  const { getTodaysForecast } = useContext(WeatherContext);
+  const { getTodaysForecast, getWeeklyForecasts } = useContext(WeatherContext);
   const [todaysForecast, setTodaysForecast] = useState<Forecast[] | void>();
+  const [weeklyForecasts, setWeeklyForecasts] = useState<Forecast[] | void>();
 
   useEffect(() => {
     async function fetchData() {
-      const data = await getTodaysForecast(city);
-      setTodaysForecast(data);
-      console.log(data);
+      const forecast = await getTodaysForecast(city);
+      setTodaysForecast(forecast);
+      const forecasts = await getWeeklyForecasts(city);
+      setWeeklyForecasts(forecasts);
     }
     fetchData();
-  }, [getTodaysForecast, city]);
+  }, [getTodaysForecast, getWeeklyForecasts, city]);
 
   return (
     <Box>
       <Container className={classes.root} maxWidth="lg">
-        {todaysForecast ? (
+        {todaysForecast && weeklyForecasts ? (
           <>
             <ForecastHeader city={city} />
             <ForecastDetails city={city} forecast={todaysForecast[0]} />
             <ForecastHorizontalBar forecasts={todaysForecast} />
-            <ForecastRows forecasts={todaysForecast} />
+            <ForecastRows forecasts={weeklyForecasts} />
           </>
         ) : (
           <p>Loading...</p>
