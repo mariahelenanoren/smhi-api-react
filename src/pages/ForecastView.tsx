@@ -8,30 +8,33 @@ import { Forecast, WeatherContext } from '../contexts/weatherContext';
 import ForecastDetails from '../components/forecast/ForecastDetails';
 import ForecastHeader from '../components/forecast/ForecastHeader';
 import ForecastHorizontalBar from '../components/forecast/ForecastHorizontalBar';
+import ForecastRows from '../components/forecast/ForecastRows';
 
 function ForecastView() {
   const classes = useStyles();
   const history = useHistory<City>();
   const city = history.location.state;
-  const { getForecasts } = useContext(WeatherContext);
-  const [forecasts, setForecasts] = useState<Forecast[] | void>();
+  const { getTodaysForecast } = useContext(WeatherContext);
+  const [todaysForecast, setTodaysForecast] = useState<Forecast[] | void>();
 
   useEffect(() => {
     async function fetchData() {
-      const data = await getForecasts(city);
-      setForecasts(data);
+      const data = await getTodaysForecast(city);
+      setTodaysForecast(data);
+      console.log(data);
     }
     fetchData();
-  }, [getForecasts, city]);
+  }, [getTodaysForecast, city]);
 
   return (
     <Box>
       <Container className={classes.root} maxWidth="lg">
-        {forecasts ? (
+        {todaysForecast ? (
           <>
             <ForecastHeader city={city} />
-            <ForecastDetails city={city} forecast={forecasts[0]} />
-            <ForecastHorizontalBar forecasts={forecasts} />
+            <ForecastDetails city={city} forecast={todaysForecast[0]} />
+            <ForecastHorizontalBar forecasts={todaysForecast} />
+            <ForecastRows forecasts={todaysForecast} />
           </>
         ) : (
           <p>Loading...</p>
