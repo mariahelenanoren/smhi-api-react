@@ -2,6 +2,7 @@ import { Box, Grid, makeStyles, Typography } from '@material-ui/core';
 import { City } from '../../contexts/cityContext';
 import { useEffect, useState } from 'react';
 import { Forecast } from '../../contexts/weatherContext';
+import { convertUTCTime } from '../../functions/convertUTCTime';
 
 interface Props {
   forecast: Forecast;
@@ -33,24 +34,6 @@ export default function ForecastDetails(props: Props) {
 
   const getParameterValue = (name: string) => {
     return forecast.parameters.find((p) => p.name === name)?.values[0];
-  };
-
-  const convertUTCTime = (utcTime: string | undefined) => {
-    if (utcTime) {
-      const localTime = new Date(utcTime);
-      let hour = localTime.getHours().toString();
-      let minutes = localTime.getMinutes().toString();
-
-      if (hour.length < 2) {
-        hour = '0' + hour;
-      }
-
-      if (minutes.length < 2) {
-        minutes = '0' + minutes;
-      }
-      const time = hour + ':' + minutes;
-      return time;
-    }
   };
 
   const getApparentTemperature = () => {
@@ -127,9 +110,10 @@ export default function ForecastDetails(props: Props) {
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    padding: '2rem 0',
+    paddingTop: 30,
+    paddingBottom: 60,
   },
   grid: {
-    marginLeft: '3rem',
+    marginLeft: 50,
   },
 }));

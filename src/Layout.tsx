@@ -22,7 +22,7 @@ export default function Layout() {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100%',
+    minHeight: '100%',
     backgroundColor: '#7a420a',
   },
 }));

@@ -62,7 +62,7 @@ export default function ForecastHeader(props: Props) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: '3rem',
+    marginTop: 50,
     '& svg': {
       fontSize: '2rem',
     },
@@ -71,11 +71,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: '1rem 0',
+    paddingTop: 15,
+    paddingBottom: 15,
     alignItems: 'flex-end',
   },
   divider: {
-    height: '0.1rem',
-    backgroundColor: theme.palette.primary.main,
+    height: 2,
+    backgroundColor: theme.palette.divider,
   },
 }));
