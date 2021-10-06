@@ -1,63 +1,45 @@
-import { Box, Grid, makeStyles, Typography } from '@material-ui/core';
-import { City } from '../../contexts/cityContext';
 import { useEffect, useState } from 'react';
-import { Forecast } from '../../contexts/weatherContext';
-import { convertUTCTime } from '../../functions/convertUTCTime';
+import { Box, Grid, Typography } from '@material-ui/core';
 
-interface Props {
-  forecast: Forecast;
-  city: City;
+import { IForecast } from '../../../contexts/weatherContext';
+import {
+  convertUTCTime,
+  fetchSunData,
+  getParameterValue,
+  getApparentTemperature,
+} from '../../../functions';
+import { ICity } from '../../../contexts/cityContext';
+import useStyles from './style';
+
+interface IProps {
+  forecast: IForecast;
+  city: ICity;
 }
 
-interface SunData {
+interface ISunData {
   results: {
     sunrise: string;
     sunset: string;
   };
 }
 
-export default function ForecastDetails(props: Props) {
+export default function Details(props: IProps) {
   const { forecast, city } = props;
   const classes = useStyles();
-  const [sunData, setSunData] = useState<SunData>();
+  const [sunData, setSunData] = useState<ISunData>();
 
   useEffect(() => {
-    const fetchSunData = async () => {
-      const response = await fetch(
-        `https://api.sunrise-sunset.org/json?lat=${city.latitude}&lng=${city.longitude}&date=today&formatted=0`
-      );
-      const data = await response.json();
-      setSunData(await data);
+    const fetch = async () => {
+      const data = await fetchSunData(city.latitude, city.longitude);
+      setSunData(data);
     };
-    fetchSunData();
+    fetch();
   }, [city]);
 
-  const getParameterValue = (name: string) => {
-    return forecast.parameters.find((p) => p.name === name)?.values[0];
-  };
-
-  const getApparentTemperature = () => {
-    const t = getParameterValue('t');
-    const w = getParameterValue('ws');
-    if (t && w) {
-      const calculation =
-        13.12 +
-        0.6215 * t -
-        13.956 * Math.pow(w, 0.16) +
-        0.48669 * t * Math.pow(w, 0.16);
-      if ((w < 2 || w > 35) && (t > 10 || t < -40)) {
-        return t;
-      } else {
-        return calculation.toFixed(1);
-      }
-    } else {
-      return undefined;
-    }
-  };
   return (
     <Box className={classes.root}>
       <Typography variant="h2" color="primary">
-        {getParameterValue('t')}
+        {getParameterValue('t', forecast.parameters)}
         &deg;
       </Typography>
       <Grid className={classes.grid} container spacing={3}>
@@ -76,44 +58,34 @@ export default function ForecastDetails(props: Props) {
         <Grid item sm={3} xs={6}>
           <Typography color="primary">Sikt</Typography>
           <Typography variant="h4" color="primary">
-            {getParameterValue('vis')} km
+            {getParameterValue('vis', forecast.parameters)} km
           </Typography>
         </Grid>
         <Grid item sm={3} xs={6}>
           <Typography color="primary">Luftfuktighet</Typography>
           <Typography variant="h4" color="primary">
-            {getParameterValue('r')}%
+            {getParameterValue('r', forecast.parameters)}%
           </Typography>
         </Grid>
         <Grid item sm={3} xs={6}>
           <Typography color="primary">Känns som</Typography>
           <Typography variant="h4" color="primary">
-            {getApparentTemperature()}&deg;
+            {getApparentTemperature(forecast.parameters)}&deg;
           </Typography>
         </Grid>
         <Grid item sm={3} xs={6}>
           <Typography color="primary">Vindhastighet</Typography>
           <Typography variant="h4" color="primary">
-            {getParameterValue('ws')} m/s
+            {getParameterValue('ws', forecast.parameters)} m/s
           </Typography>
         </Grid>
         <Grid item sm={3} xs={6}>
           <Typography color="primary">Lufttryck</Typography>
           <Typography variant="h4" color="primary">
-            {getParameterValue('msl')} hPa
+            {getParameterValue('msl', forecast.parameters)} hPa
           </Typography>
         </Grid>
       </Grid>
     </Box>
   );
 }
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    paddingTop: 30,
-    paddingBottom: 60,
-  },
-  grid: {
-    marginLeft: 50,
-  },
-}));

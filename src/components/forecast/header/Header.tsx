@@ -1,16 +1,17 @@
+import { useContext, useEffect, useState } from 'react';
 import { Box, Divider, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { City } from '../../contexts/cityContext';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import { CityContext } from '../../contexts/cityContext';
-import { useContext, useEffect, useState } from 'react';
 
-interface Props {
-  city: City;
+import useStyles from './style';
+import { ICity } from '../../../contexts/cityContext';
+import { CityContext } from '../../../contexts/cityContext';
+
+interface IProps {
+  city: ICity;
 }
 
-export default function ForecastHeader(props: Props) {
+export default function Header(props: IProps) {
   const { city } = props;
   const { addNewCity, removeCity, savedCities } = useContext(CityContext);
   const classes = useStyles();
@@ -59,24 +60,3 @@ export default function ForecastHeader(props: Props) {
     </Box>
   );
 }
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginTop: 50,
-    '& svg': {
-      fontSize: '2rem',
-    },
-  },
-  row: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingTop: 15,
-    paddingBottom: 15,
-    alignItems: 'flex-end',
-  },
-  divider: {
-    height: 2,
-    backgroundColor: theme.palette.divider,
-  },
-}));

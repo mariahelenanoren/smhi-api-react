@@ -1,7 +1,7 @@
 import { createContext } from 'react';
-import { City } from './cityContext';
+import { ICity } from './cityContext';
 
-export interface Parameters {
+export interface IParameter {
   level: number;
   levelType: string;
   name: string;
@@ -9,17 +9,17 @@ export interface Parameters {
   values: number[];
 }
 
-export interface Forecast {
+export interface IForecast {
   validTime: string;
-  parameters: Parameters[];
+  parameters: IParameter[];
 }
 interface Props {
   children: Object;
 }
 
 interface Context {
-  getTodaysForecast: (city: City) => Promise<Forecast[] | undefined> | void;
-  getWeeklyForecasts: (city: City) => Promise<Forecast[] | undefined> | void;
+  getTodaysForecast: (city: ICity) => Promise<IForecast[] | undefined> | void;
+  getWeeklyForecasts: (city: ICity) => Promise<IForecast[] | undefined> | void;
 }
 
 export const WeatherContext = createContext<Context>({
@@ -28,7 +28,7 @@ export const WeatherContext = createContext<Context>({
 });
 
 function WeatherProvider(props: Props) {
-  const getForecasts = async (city: City) => {
+  const getForecasts = async (city: ICity) => {
     try {
       const response = await fetch(
         `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${city.longitude}/lat/${city.latitude}/data.json`
@@ -40,7 +40,7 @@ function WeatherProvider(props: Props) {
     }
   };
 
-  const getTodaysForecast = async (city: City) => {
+  const getTodaysForecast = async (city: ICity) => {
     const forecasts = await getForecasts(city);
     const firstForecast = getAccurateTimeSeries(await forecasts.timeSeries);
     const todaysForecast = get24HForecast(
@@ -50,10 +50,10 @@ function WeatherProvider(props: Props) {
     return todaysForecast;
   };
 
-  const getWeeklyForecasts = async (city: City) => {
+  const getWeeklyForecasts = async (city: ICity) => {
     const data = await getForecasts(city);
-    const forecasts: Forecast[] = data.timeSeries;
-    const weeklyForecasts: Forecast[] = [];
+    const forecasts: IForecast[] = data.timeSeries;
+    const weeklyForecasts: IForecast[] = [];
     for (const forecast of forecasts) {
       if (forecast.validTime.slice(11, 13) === '12') {
         weeklyForecasts.push(forecast);
@@ -83,7 +83,7 @@ function WeatherProvider(props: Props) {
 
   const get24HForecast = (timeSeries: any[], firstForecast: any) => {
     const index = timeSeries.indexOf(firstForecast);
-    const todaysForecast: Forecast[] = [];
+    const todaysForecast: IForecast[] = [];
     for (const time in timeSeries) {
       if (Number(time) >= index && Number(time) < index + 24) {
         todaysForecast.push(timeSeries[time]);

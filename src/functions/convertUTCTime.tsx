@@ -1,6 +1,6 @@
-export const convertUTCTime = (utcTime: string | undefined) => {
-  if (utcTime) {
-    const localTime = new Date(utcTime);
+export default function convertUTCTime(UTCTime: string | undefined) {
+  if (UTCTime) {
+    const localTime = new Date(UTCTime);
     let hour = localTime.getHours().toString();
     let minutes = localTime.getMinutes().toString();
 
@@ -14,4 +14,4 @@ export const convertUTCTime = (utcTime: string | undefined) => {
     const time = hour + ':' + minutes;
     return time;
   }
-};
+}
