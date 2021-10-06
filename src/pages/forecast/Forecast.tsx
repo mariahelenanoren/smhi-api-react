@@ -4,6 +4,7 @@ import { useHistory, withRouter } from 'react-router-dom';
 
 import { ICity } from '../../contexts/cityContext';
 import { IForecast, WeatherContext } from '../../contexts/weatherContext';
+import backgroundImage from '../../assets/fall.jpg';
 import Header from '../../components/forecast/header/Header';
 import HorizontalBar from '../../components/forecast/horizontalBar/HorizontalBar';
 import Row from '../../components/forecast/row/Row';
@@ -30,18 +31,23 @@ const Forecast = () => {
 
   return (
     <Box>
-      <Container className={classes.root} maxWidth="lg">
-        {todaysForecast && weeklyForecasts ? (
-          <>
+      {todaysForecast && weeklyForecasts ? (
+        <>
+          <Box className={classes.imageContainer}>
+            <img
+              className={classes.backgroundImage}
+              src={backgroundImage}
+              alt="background"
+            />
             <Header city={city} />
             <Details city={city} forecast={todaysForecast[0]} />
-            <HorizontalBar forecasts={todaysForecast} />
-            <Row forecasts={weeklyForecasts} />
-          </>
-        ) : (
-          <p>Loading...</p>
-        )}
-      </Container>
+          </Box>
+          <HorizontalBar forecasts={todaysForecast} />
+          <Row forecasts={weeklyForecasts} />
+        </>
+      ) : (
+        <p>Loading...</p>
+      )}
     </Box>
   );
 };

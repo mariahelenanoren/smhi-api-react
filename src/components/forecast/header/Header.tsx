@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
-import { Box, Divider, Typography } from '@material-ui/core';
+import { Container, Divider, Typography } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 import useStyles from './style';
 import { ICity } from '../../../contexts/cityContext';
 import { CityContext } from '../../../contexts/cityContext';
+import TemplateComponent from '../../templateComponent/templateComponent';
 
 interface IProps {
   city: ICity;
@@ -35,28 +36,30 @@ export default function Header(props: IProps) {
   }, [city, savedCities]);
 
   return (
-    <Box className={classes.root}>
-      <div className={classes.row}>
-        <div>
-          <Typography variant="overline" color="primary">
-            {city.municipality}
-          </Typography>
-          <Typography variant="h2" color="primary">
-            {city.locality}
-          </Typography>
+    <TemplateComponent>
+      <Container className={classes.root}>
+        <div className={classes.row}>
+          <div>
+            <Typography variant="overline" color="primary">
+              {city.municipality}
+            </Typography>
+            <Typography variant="h2" color="primary">
+              {city.locality}
+            </Typography>
+          </div>
+          <div>
+            {isFavorite ? (
+              <FavoriteIcon color="primary" onClick={handleToggleFavorite} />
+            ) : (
+              <FavoriteBorderIcon
+                color="primary"
+                onClick={handleToggleFavorite}
+              />
+            )}
+          </div>
         </div>
-        <div>
-          {isFavorite ? (
-            <FavoriteIcon color="primary" onClick={handleToggleFavorite} />
-          ) : (
-            <FavoriteBorderIcon
-              color="primary"
-              onClick={handleToggleFavorite}
-            />
-          )}
-        </div>
-      </div>
-      <Divider color="primary" light className={classes.divider} />
-    </Box>
+        <Divider color="primary" light className={classes.divider} />
+      </Container>
+    </TemplateComponent>
   );
 }

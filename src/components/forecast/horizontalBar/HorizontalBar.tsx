@@ -1,7 +1,8 @@
-import { Box, Typography } from '@material-ui/core';
+import { Box, Container, Typography } from '@material-ui/core';
 
 import { IForecast } from '../../../contexts/weatherContext';
 import { convertUTCTime } from '../../../functions';
+import TemplateComponent from '../../templateComponent/templateComponent';
 import useStyles from './style';
 
 interface IProps {
@@ -13,29 +14,31 @@ export default function HorizontalBar(props: IProps) {
   const classes = useStyles();
 
   return (
-    <Box className={classes.root}>
-      {forecasts.map((forecast, index) => {
-        return (
-          <Box className={classes.forecastBox}>
-            {index === 0 ? (
-              <Typography className={classes.bold} color="primary">
-                Nu
-              </Typography>
-            ) : (
-              <Typography color="primary">
-                {convertUTCTime(forecast.validTime)}
-              </Typography>
-            )}
-            {forecast.parameters.map((parameter) =>
-              parameter.name === 't' ? (
-                <Typography color="primary">
-                  {parameter.values[0]}&deg;C
+    <TemplateComponent>
+      <Container className={classes.root}>
+        {forecasts.map((forecast, index) => {
+          return (
+            <Box className={classes.forecastBox}>
+              {index === 0 ? (
+                <Typography className={classes.bold} color="primary">
+                  Nu
                 </Typography>
-              ) : null
-            )}
-          </Box>
-        );
-      })}
-    </Box>
+              ) : (
+                <Typography color="primary">
+                  {convertUTCTime(forecast.validTime)}
+                </Typography>
+              )}
+              {forecast.parameters.map((parameter) =>
+                parameter.name === 't' ? (
+                  <Typography color="primary">
+                    {parameter.values[0]}&deg;C
+                  </Typography>
+                ) : null
+              )}
+            </Box>
+          );
+        })}
+      </Container>
+    </TemplateComponent>
   );
 }

@@ -8,7 +8,6 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '1rem 8rem',
     '& div': {
       display: 'flex',
       alignItems: 'center',

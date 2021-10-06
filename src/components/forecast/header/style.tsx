@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: 50,
+    paddingTop: 50,
     '& svg': {
       fontSize: '2rem',
     },
