@@ -1,7 +1,8 @@
 import React from 'react';
-import CityProvider from './contexts/cityContext';
-import Layout from './Layout';
 import { ThemeProvider } from '@material-ui/core';
+
+import CityProvider from './contexts/cityContext';
+import Layout from './layout/Layout';
 import { theme } from './styling/theme';
 import WeatherProvider from './contexts/weatherContext';
 
