@@ -1,6 +1,8 @@
-import { Box, Typography } from '@material-ui/core';
+import { Box, Container, Typography } from '@material-ui/core';
 import { IForecast } from '../../../contexts/weatherContext';
 import { getForecastDate } from '../../../functions';
+import TemplateComponent from '../../templateComponent/templateComponent';
+import useStyles from './style';
 
 interface IProps {
   forecasts: IForecast[];
@@ -8,23 +10,26 @@ interface IProps {
 
 export default function Row(props: IProps) {
   const { forecasts } = props;
+  const classes = useStyles();
 
   return (
-    <>
-      {forecasts.map((forecast, index) =>
-        index < 7 ? (
-          <Box>
-            <Typography color="primary">{getForecastDate(index)}</Typography>
-            {forecast.parameters.map((parameter) =>
-              parameter.name === 't' ? (
-                <Typography color="primary">
-                  {parameter.values[0]}&deg;C
-                </Typography>
-              ) : null
-            )}
-          </Box>
-        ) : null
-      )}
-    </>
+    <TemplateComponent>
+      <Container className={classes.root}>
+        {forecasts.map((forecast, index) =>
+          index < 7 ? (
+            <Box className={classes.row}>
+              <Typography color="primary">{getForecastDate(index)}</Typography>
+              {forecast.parameters.map((parameter) =>
+                parameter.name === 't' ? (
+                  <Typography color="primary">
+                    {parameter.values[0]}&deg;C
+                  </Typography>
+                ) : null
+              )}
+            </Box>
+          ) : null
+        )}
+      </Container>
+    </TemplateComponent>
   );
 }
