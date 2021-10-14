@@ -15,7 +15,7 @@ export default function Row(props: IProps) {
   return (
     <Container className={classes.root}>
       <TemplateComponent>
-        <Grid direction="column">
+        <Grid container direction="column">
           {forecasts.map((forecast, index) =>
             index < 7 ? (
               <Box className={classes.row}>

@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     paddingBottom: 100,
   },
@@ -18,6 +18,6 @@ const useStyles = makeStyles({
     objectFit: 'cover',
     opacity: '0.2',
   },
-});
+}));
 
 export default useStyles;

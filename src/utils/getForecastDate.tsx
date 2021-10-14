@@ -4,7 +4,6 @@ export default function getForecastDate(index: number) {
   day.setDate(today.getDate() + index + 1);
   const weekday = getWeekday(day);
   const date = day.getDate();
-  console.log(day.getDay());
   const month = getMonth(day);
   return `${weekday} ${date} ${month}`;
 }

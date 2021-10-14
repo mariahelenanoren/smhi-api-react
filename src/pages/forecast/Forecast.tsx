@@ -34,11 +34,11 @@ const Forecast = () => {
       {todaysForecast && weeklyForecasts ? (
         <>
           <Box className={classes.imageContainer}>
-            <img
+            {/* <img
               className={classes.backgroundImage}
               src={backgroundImage}
               alt="background"
-            />
+            /> */}
             <Header city={city} />
             <Details city={city} forecast={todaysForecast[0]} />
           </Box>

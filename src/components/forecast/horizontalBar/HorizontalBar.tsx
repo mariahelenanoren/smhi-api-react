@@ -25,9 +25,11 @@ export default function HorizontalBar(props: IProps) {
                 ) : (
                   <Typography>{convertUTCTime(forecast.validTime)}</Typography>
                 )}
-                {forecast.parameters.map((parameter) =>
+                {forecast.parameters.map((parameter, index) =>
                   parameter.name === 't' ? (
-                    <Typography>{parameter.values[0]}&deg;C</Typography>
+                    <Typography key={index}>
+                      {parameter.values[0]}&deg;C
+                    </Typography>
                   ) : null
                 )}
               </Box>
