@@ -51,10 +51,10 @@ export default function Card({ city }: IProps) {
           <div>
             <Typography variant="h6">{city.municipality}</Typography>
             <div className={classes.bottomContainer}>
-              <Typography variant="h6" color="textSecondary">
-                {city.municipality}
+              <Typography color="textSecondary">{city.municipality}</Typography>
+              <Typography onClick={handleClick} className={classes.link}>
+                Läs mer
               </Typography>
-              <Typography onClick={handleClick}>Läs mer</Typography>
             </div>
           </div>
         </>

@@ -19,6 +19,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'end',
   },
+  link: {
+    textDecoration: 'underline',
+    zIndex: 1,
+    '&:hover': {
+      cursor: 'pointer',
+    },
+  },
 }));
 
 export default useStyles;

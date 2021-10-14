@@ -10,6 +10,12 @@ const useStyles = makeStyles((theme) => ({
   grid: {
     marginLeft: 50,
   },
+  temperature: {
+    [theme.breakpoints.only('xs')]: {
+      marginTop: 20,
+      marginBottom: 20,
+    },
+  },
 }));
 
 export default useStyles;

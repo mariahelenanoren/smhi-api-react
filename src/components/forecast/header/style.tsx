@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'flex-end',
   },
   heart: {
-    '& :hover': {
+    '&:hover': {
       cursor: 'pointer',
     },
   },
