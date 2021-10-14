@@ -40,50 +40,50 @@ export default function Details(props: IProps) {
   return (
     <TemplateComponent>
       <Container className={classes.root}>
-        <Typography variant="h2" color="primary">
+        <Typography variant="h2">
           {getParameterValue('t', forecast.parameters)}
           &deg;
         </Typography>
         <Grid className={classes.grid} container spacing={3}>
           <Grid item sm={3} xs={6}>
-            <Typography color="primary">Soluppgång</Typography>
-            <Typography variant="h4" color="primary">
+            <Typography>Soluppgång</Typography>
+            <Typography variant="h4">
               {convertUTCTime(sunData?.results.sunrise)}
             </Typography>
           </Grid>
           <Grid item sm={3} xs={6}>
-            <Typography color="primary">Solnedgång</Typography>
-            <Typography variant="h4" color="primary">
+            <Typography>Solnedgång</Typography>
+            <Typography variant="h4">
               {convertUTCTime(sunData?.results.sunset)}
             </Typography>
           </Grid>
           <Grid item sm={3} xs={6}>
-            <Typography color="primary">Sikt</Typography>
-            <Typography variant="h4" color="primary">
+            <Typography>Sikt</Typography>
+            <Typography variant="h4">
               {getParameterValue('vis', forecast.parameters)} km
             </Typography>
           </Grid>
           <Grid item sm={3} xs={6}>
-            <Typography color="primary">Luftfuktighet</Typography>
-            <Typography variant="h4" color="primary">
+            <Typography>Luftfuktighet</Typography>
+            <Typography variant="h4">
               {getParameterValue('r', forecast.parameters)}%
             </Typography>
           </Grid>
           <Grid item sm={3} xs={6}>
-            <Typography color="primary">Känns som</Typography>
-            <Typography variant="h4" color="primary">
+            <Typography>Känns som</Typography>
+            <Typography variant="h4">
               {getApparentTemperature(forecast.parameters)}&deg;
             </Typography>
           </Grid>
           <Grid item sm={3} xs={6}>
-            <Typography color="primary">Vindhastighet</Typography>
-            <Typography variant="h4" color="primary">
+            <Typography>Vindhastighet</Typography>
+            <Typography variant="h4">
               {getParameterValue('ws', forecast.parameters)} m/s
             </Typography>
           </Grid>
           <Grid item sm={3} xs={6}>
-            <Typography color="primary">Lufttryck</Typography>
-            <Typography variant="h4" color="primary">
+            <Typography>Lufttryck</Typography>
+            <Typography variant="h4">
               {getParameterValue('msl', forecast.parameters)} hPa
             </Typography>
           </Grid>

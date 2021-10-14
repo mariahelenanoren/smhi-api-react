@@ -18,12 +18,10 @@ export default function Row(props: IProps) {
         {forecasts.map((forecast, index) =>
           index < 7 ? (
             <Box className={classes.row}>
-              <Typography color="primary">{getForecastDate(index)}</Typography>
+              <Typography>{getForecastDate(index)}</Typography>
               {forecast.parameters.map((parameter) =>
                 parameter.name === 't' ? (
-                  <Typography color="primary">
-                    {parameter.values[0]}&deg;C
-                  </Typography>
+                  <Typography>{parameter.values[0]}&deg;C</Typography>
                 ) : null
               )}
             </Box>

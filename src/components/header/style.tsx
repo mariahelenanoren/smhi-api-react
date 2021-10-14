@@ -1,10 +1,10 @@
 import { makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     height: '5rem',
     position: 'relative',
-    zIndex: 1,
+    zIndex: 10,
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -28,26 +28,14 @@ const useStyles = makeStyles({
     },
   },
   autocomplete: {
-    /* borderRadius: '5rem', */
-    '& .MuiFormControl-root': {
-      /* paddingRight: '0.5rem',
-              paddingLeft: '0.5rem', */
-      backgroundColor: 'rgba(250, 250, 250, 0.3)',
-    },
+    width: 270,
     '& fieldset': {
       border: 'none',
     },
   },
-  textField: {
-    /* borderRadius: '5rem', */
-    width: '15rem',
-    backgroundColor: 'rgba(250, 250, 250, 0.2)',
+  textfield: {
+    backgroundColor: theme.palette.primary.main,
   },
-  input: {
-    '&::placeholder': {
-      opacity: '100%',
-    },
-  },
-});
+}));
 
 export default useStyles;

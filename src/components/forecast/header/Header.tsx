@@ -40,25 +40,18 @@ export default function Header(props: IProps) {
       <Container className={classes.root}>
         <div className={classes.row}>
           <div>
-            <Typography variant="overline" color="primary">
-              {city.municipality}
-            </Typography>
-            <Typography variant="h2" color="primary">
-              {city.locality}
-            </Typography>
+            <Typography variant="overline">{city.municipality}</Typography>
+            <Typography variant="h2">{city.locality}</Typography>
           </div>
           <div>
             {isFavorite ? (
-              <FavoriteIcon color="primary" onClick={handleToggleFavorite} />
+              <FavoriteIcon onClick={handleToggleFavorite} />
             ) : (
-              <FavoriteBorderIcon
-                color="primary"
-                onClick={handleToggleFavorite}
-              />
+              <FavoriteBorderIcon onClick={handleToggleFavorite} />
             )}
           </div>
         </div>
-        <Divider color="primary" light className={classes.divider} />
+        <Divider light className={classes.divider} />
       </Container>
     </TemplateComponent>
   );

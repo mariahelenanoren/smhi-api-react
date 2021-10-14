@@ -2,16 +2,24 @@ import { createTheme } from '@material-ui/core/styles';
 
 export const theme = createTheme({
   palette: {
-    divider: 'rgba(255, 255, 255, 0.5)',
-    type: 'dark',
+    divider: '#f0f0f0',
+    type: 'light',
     primary: {
       main: '#ffffff',
+      contrastText: '#000000',
+    },
+    secondary: {
+      main: '#f0f0f0',
+      contrastText: '#000000',
     },
     text: {
-      primary: '#ffffff',
+      primary: '#000000',
     },
   },
   typography: {
+    allVariants: {
+      color: '#000000',
+    },
     h2: {
       fontSize: '3.5rem',
     },

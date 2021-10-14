@@ -20,19 +20,13 @@ export default function HorizontalBar(props: IProps) {
           return (
             <Box className={classes.forecastBox}>
               {index === 0 ? (
-                <Typography className={classes.bold} color="primary">
-                  Nu
-                </Typography>
+                <Typography className={classes.bold}>Nu</Typography>
               ) : (
-                <Typography color="primary">
-                  {convertUTCTime(forecast.validTime)}
-                </Typography>
+                <Typography>{convertUTCTime(forecast.validTime)}</Typography>
               )}
               {forecast.parameters.map((parameter) =>
                 parameter.name === 't' ? (
-                  <Typography color="primary">
-                    {parameter.values[0]}&deg;C
-                  </Typography>
+                  <Typography>{parameter.values[0]}&deg;C</Typography>
                 ) : null
               )}
             </Box>
