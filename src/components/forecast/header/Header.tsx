@@ -7,13 +7,15 @@ import useStyles from './style';
 import { ICity } from '../../../contexts/cityContext';
 import { CityContext } from '../../../contexts/cityContext';
 import TemplateComponent from '../../templateComponent/templateComponent';
+import { IForecast } from '../../../contexts/weatherContext';
+import getWeatherIcon from '../../../utils/getWeatherIcon';
 
 interface IProps {
   city: ICity;
+  forecast: IForecast;
 }
 
-export default function Header(props: IProps) {
-  const { city } = props;
+export default function Header({ city, forecast }: IProps) {
   const { addNewCity, removeCity, savedCities } = useContext(CityContext);
   const classes = useStyles();
   const [isFavorite, setFavorite] = useState<boolean>();
@@ -43,7 +45,12 @@ export default function Header(props: IProps) {
             <Typography variant="h6" color="textSecondary">
               {city.municipality}
             </Typography>
-            <Typography variant="h4">{city.locality}</Typography>
+            <div>
+              <Typography variant="h4">{city.locality}</Typography>
+              {getWeatherIcon(
+                forecast.parameters.find((p) => p.name === 'Wsymb2')?.values[0]
+              )}
+            </div>
           </div>
           <div>
             {isFavorite ? (

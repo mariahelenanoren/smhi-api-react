@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './App';
+import './styling/weather-icons.css';
 import './styling/index.css';
 import reportWebVitals from './reportWebVitals';
 

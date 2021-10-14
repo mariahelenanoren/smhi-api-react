@@ -38,7 +38,7 @@ const Forecast = () => {
               src={'/assets/background.jpg'}
               alt="background"
             />
-            <Header city={city} />
+            <Header city={city} forecast={todaysForecast[0]} />
             <Details city={city} forecast={todaysForecast[0]} />
           </Box>
           <HorizontalBar forecasts={todaysForecast} />
