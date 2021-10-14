@@ -30,7 +30,7 @@ const Forecast = () => {
   }, [getTodaysForecast, getWeeklyForecasts, city]);
 
   return (
-    <Box>
+    <Box className={classes.root}>
       {todaysForecast && weeklyForecasts ? (
         <>
           <Box className={classes.imageContainer}>

@@ -7,7 +7,7 @@ import {
   fetchSunData,
   getParameterValue,
   getApparentTemperature,
-} from '../../../functions';
+} from '../../../utils';
 import { ICity } from '../../../contexts/cityContext';
 import useStyles from './style';
 import TemplateComponent from '../../templateComponent/templateComponent';

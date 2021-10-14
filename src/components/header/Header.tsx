@@ -47,7 +47,7 @@ export default function Header() {
               className={classes.textfield}
               placeholder="Sök stad eller ort..."
               variant="outlined"
-              size="small"
+              size="medium"
               InputProps={{
                 ...params.InputProps,
                 endAdornment: (

@@ -1,7 +1,7 @@
-import { Box, Container, Typography } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 
 import { IForecast } from '../../../contexts/weatherContext';
-import { convertUTCTime } from '../../../functions';
+import { convertUTCTime } from '../../../utils';
 import TemplateComponent from '../../templateComponent/templateComponent';
 import useStyles from './style';
 
@@ -14,25 +14,27 @@ export default function HorizontalBar(props: IProps) {
   const classes = useStyles();
 
   return (
-    <TemplateComponent>
-      <Container className={classes.root}>
-        {forecasts.map((forecast, index) => {
-          return (
-            <Box className={classes.forecastBox}>
-              {index === 0 ? (
-                <Typography className={classes.bold}>Nu</Typography>
-              ) : (
-                <Typography>{convertUTCTime(forecast.validTime)}</Typography>
-              )}
-              {forecast.parameters.map((parameter) =>
-                parameter.name === 't' ? (
-                  <Typography>{parameter.values[0]}&deg;C</Typography>
-                ) : null
-              )}
-            </Box>
-          );
-        })}
-      </Container>
-    </TemplateComponent>
+    <Box className={classes.root}>
+      <TemplateComponent>
+        <Box className={classes.barContainer}>
+          {forecasts.map((forecast, index) => {
+            return (
+              <Box key={index} className={classes.forecastBox}>
+                {index === 0 ? (
+                  <Typography className={classes.bold}>Nu</Typography>
+                ) : (
+                  <Typography>{convertUTCTime(forecast.validTime)}</Typography>
+                )}
+                {forecast.parameters.map((parameter) =>
+                  parameter.name === 't' ? (
+                    <Typography>{parameter.values[0]}&deg;C</Typography>
+                  ) : null
+                )}
+              </Box>
+            );
+          })}
+        </Box>
+      </TemplateComponent>
+    </Box>
   );
 }

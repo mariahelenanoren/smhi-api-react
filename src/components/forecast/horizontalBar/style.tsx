@@ -3,12 +3,14 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    overflowY: 'scroll',
+    backgroundColor: theme.palette.secondary.main,
     paddingTop: 15,
     paddingBottom: 15,
+  },
+  barContainer: {
+    width: '100%',
+    overflowY: 'scroll',
     display: 'flex',
-    borderTop: `1px solid ${theme.palette.divider}`,
-    borderBottom: `1px solid ${theme.palette.divider}`,
   },
   forecastBox: {
     display: 'flex',
