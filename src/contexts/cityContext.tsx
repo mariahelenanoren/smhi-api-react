@@ -1,3 +1,4 @@
+import React, { useCallback } from 'react';
 import { createContext, useEffect, useState } from 'react';
 
 export interface ICity {
@@ -34,34 +35,15 @@ function CityProvider(props: IProps) {
   const [allCities, setAllCities] = useState<ICity[]>([]);
 
   useEffect(() => {
-    async function fetchCities() {
-      /* Fetches and reads CSV file */
-      const response = await fetch(
-        '/svenska-stader-master/src/svenska-stader.csv'
-      );
-      const reader = response.body?.getReader();
-      const result = await reader?.read();
-      const decoder = new TextDecoder('utf-8');
-      const csv = decoder.decode(result?.value);
-
-      /* Organizes information */
-      const list = csv.split('\n');
-      list.forEach((item) => {
-        const i = item.split(',');
-        const cityObject = {
-          locality: i[0],
-          municipality: i[1],
-          county: i[2],
-          latitude: i[3],
-          longitude: i[4],
-        };
-        if (item !== list[0]) {
-          setAllCities((prevState) => [...prevState, cityObject]);
-        }
-      });
-    }
-    fetchCities();
+    const prevSavedCities = JSON.parse(
+      window.localStorage.getItem('savedCities') || '[]'
+    );
+    setSavedCities(prevSavedCities);
   }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem('savedCities', JSON.stringify(savedCities));
+  }, [savedCities]);
 
   const addNewCity = (city: ICity) => {
     setSavedCities((prevState) => [...prevState, city]);
@@ -69,6 +51,41 @@ function CityProvider(props: IProps) {
 
   const removeCity = (city: ICity) => {
     setSavedCities(savedCities.filter((c) => c !== city));
+  };
+
+  const fetchCities = useCallback(async () => {
+    /* Fetches and reads CSV file */
+    const response = await fetch(
+      '/svenska-stader-master/src/svenska-stader.csv'
+    );
+    const reader = response.body?.getReader();
+    const result = await reader?.read();
+    const decoder = new TextDecoder('utf-8');
+    const csv = decoder.decode(result?.value);
+    organizeData(csv);
+  }, []);
+
+  useEffect(() => {
+    fetchCities();
+  }, [fetchCities]);
+
+  const organizeData = (csv: string) => {
+    /* Organizes information */
+    const list = csv.split('\n');
+    list.forEach((item) => {
+      const i = item.split(',');
+      const cityObject = {
+        locality: i[0],
+        municipality: i[1],
+        county: i[2],
+        latitude: i[3],
+        longitude: i[4],
+      };
+      /* First item of list consist of headings */
+      if (item !== list[0]) {
+        setAllCities((prevState) => [...prevState, cityObject]);
+      }
+    });
   };
 
   return (
