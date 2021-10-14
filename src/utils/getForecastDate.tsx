@@ -1,16 +1,18 @@
 export default function getForecastDate(index: number) {
-  console.log(index);
   const today = new Date();
   const day = new Date();
-  day.setDate(today.getDate() + index);
+  day.setDate(today.getDate() + index + 1);
   const weekday = getWeekday(day);
   const date = day.getDate();
+  console.log(day.getDay());
   const month = getMonth(day);
   return `${weekday} ${date} ${month}`;
 }
 
 function getWeekday(date: Date) {
   switch (date.getDay()) {
+    case 0:
+      return 'Söndag';
     case 1:
       return 'Måndag';
     case 2:
@@ -23,8 +25,6 @@ function getWeekday(date: Date) {
       return 'Fredag';
     case 6:
       return 'Lördag';
-    case 7:
-      return 'Söndag';
     default:
       return 'Undefined';
   }
@@ -32,29 +32,29 @@ function getWeekday(date: Date) {
 
 function getMonth(date: Date) {
   switch (date.getMonth()) {
-    case 1:
+    case 0:
       return 'Januari';
-    case 2:
+    case 1:
       return 'Februari';
-    case 3:
+    case 2:
       return 'March';
-    case 4:
+    case 3:
       return 'April';
-    case 5:
+    case 4:
       return 'Maj';
-    case 6:
+    case 5:
       return 'Juni';
-    case 7:
+    case 6:
       return 'Juli';
-    case 8:
+    case 7:
       return 'Augusti';
-    case 9:
+    case 8:
       return 'September';
-    case 10:
+    case 9:
       return 'Oktober';
-    case 11:
+    case 10:
       return 'November';
-    case 12:
+    case 11:
       return 'December';
     default:
       return 'Undefined';
