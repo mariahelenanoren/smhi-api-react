@@ -39,7 +39,7 @@ export default function Card({ city }: IProps) {
       {todaysForecast ? (
         <>
           <div className={classes.topContainer}>
-            <Typography variant="h2">
+            <Typography variant="h3">
               {todaysForecast[0].parameters
                 .find((p) => p.name === 't')
                 ?.values[0].toFixed(0)}
@@ -51,7 +51,9 @@ export default function Card({ city }: IProps) {
           <div>
             <Typography variant="h6">{city.municipality}</Typography>
             <div className={classes.bottomContainer}>
-              <Typography variant="h6">{city.municipality}</Typography>
+              <Typography variant="h6" color="textSecondary">
+                {city.municipality}
+              </Typography>
               <Typography onClick={handleClick}>Läs mer</Typography>
             </div>
           </div>

@@ -43,7 +43,7 @@ export default function Header(props: IProps) {
             <Typography variant="h6" color="textSecondary">
               {city.municipality}
             </Typography>
-            <Typography variant="h2">{city.locality}</Typography>
+            <Typography variant="h4">{city.locality}</Typography>
           </div>
           <div>
             {isFavorite ? (

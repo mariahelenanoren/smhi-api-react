@@ -49,43 +49,43 @@ export default function Details(props: IProps) {
         <Grid item container xs={9} spacing={3}>
           <Grid item sm={3} xs={6}>
             <Typography>Soluppgång</Typography>
-            <Typography variant="h4">
+            <Typography variant="h5">
               {convertUTCTime(sunData?.results.sunrise)}
             </Typography>
           </Grid>
           <Grid item sm={3} xs={6}>
             <Typography>Solnedgång</Typography>
-            <Typography variant="h4">
+            <Typography variant="h5">
               {convertUTCTime(sunData?.results.sunset)}
             </Typography>
           </Grid>
           <Grid item sm={3} xs={6}>
             <Typography>Sikt</Typography>
-            <Typography variant="h4">
+            <Typography variant="h5">
               {getParameterValue('vis', forecast.parameters)} km
             </Typography>
           </Grid>
           <Grid item sm={3} xs={6}>
             <Typography>Luftfuktighet</Typography>
-            <Typography variant="h4">
+            <Typography variant="h5">
               {getParameterValue('r', forecast.parameters)}%
             </Typography>
           </Grid>
           <Grid item sm={3} xs={6}>
             <Typography>Känns som</Typography>
-            <Typography variant="h4">
-              {getApparentTemperature(forecast.parameters)}&deg;
+            <Typography variant="h5">
+              {getApparentTemperature(forecast.parameters)}&deg;C
             </Typography>
           </Grid>
           <Grid item sm={3} xs={6}>
             <Typography>Vindhastighet</Typography>
-            <Typography variant="h4">
+            <Typography variant="h5">
               {getParameterValue('ws', forecast.parameters)} m/s
             </Typography>
           </Grid>
           <Grid item sm={3} xs={6}>
             <Typography>Lufttryck</Typography>
-            <Typography variant="h4">
+            <Typography variant="h5">
               {getParameterValue('msl', forecast.parameters)} hPa
             </Typography>
           </Grid>
