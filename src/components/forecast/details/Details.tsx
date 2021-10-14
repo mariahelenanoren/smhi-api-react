@@ -83,7 +83,7 @@ export default function Details(props: IProps) {
               {getParameterValue('ws', forecast.parameters)} m/s
             </Typography>
           </Grid>
-          <Grid item md={3} xs={6}>
+          <Grid item md={6} xs={12}>
             <Typography>Lufttryck</Typography>
             <Typography variant="h5">
               {getParameterValue('msl', forecast.parameters)} hPa

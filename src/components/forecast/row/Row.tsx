@@ -1,6 +1,7 @@
 import { Box, Container, Typography, Grid } from '@material-ui/core';
 import { IForecast } from '../../../contexts/weatherContext';
 import { getForecastDate } from '../../../utils';
+import getWeatherIcon from '../../../utils/getWeatherIcon';
 import TemplateComponent from '../../templateComponent/templateComponent';
 import useStyles from './style';
 
@@ -20,13 +21,20 @@ export default function Row(props: IProps) {
             index < 7 ? (
               <Box className={classes.row}>
                 <Typography>{getForecastDate(index)}</Typography>
-                {forecast.parameters.map((parameter) =>
-                  parameter.name === 't' ? (
-                    <Typography>
-                      {parameter.values[0].toFixed(0)}&deg;C
-                    </Typography>
-                  ) : null
-                )}
+                <div className={classes.forecastContainer}>
+                  {forecast.parameters.map((parameter) =>
+                    parameter.name === 't' ? (
+                      <Typography>
+                        {parameter.values[0].toFixed(0)}&deg;C
+                      </Typography>
+                    ) : null
+                  )}
+                  <i
+                    className={`${getWeatherIcon(forecast.parameters)} ${
+                      classes.weatherIcon
+                    }`}
+                  ></i>
+                </div>
               </Box>
             ) : null
           )}

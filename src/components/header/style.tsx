@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   textfield: {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.common.white,
   },
 }));
 

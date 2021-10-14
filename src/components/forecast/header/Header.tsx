@@ -45,11 +45,13 @@ export default function Header({ city, forecast }: IProps) {
             <Typography variant="h6" color="textSecondary">
               {city.municipality}
             </Typography>
-            <div>
+            <div className={classes.localityContainer}>
               <Typography variant="h4">{city.locality}</Typography>
-              {getWeatherIcon(
-                forecast.parameters.find((p) => p.name === 'Wsymb2')?.values[0]
-              )}
+              <i
+                className={`${getWeatherIcon(forecast.parameters)} ${
+                  classes.weatherIcon
+                }`}
+              ></i>
             </div>
           </div>
           <div>

@@ -20,7 +20,7 @@ export default function Home() {
         />
       </div>
       <TemplateComponent>
-        <Grid container spacing={2}>
+        <Grid container spacing={1}>
           {savedCities.map((city, index) => (
             <Grid key={index} item xs={12} sm={6} md={4}>
               <Card city={city} />

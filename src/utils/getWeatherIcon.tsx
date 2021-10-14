@@ -1,62 +1,63 @@
-import { ReactElement } from 'react';
+import { IParameter } from '../contexts/weatherContext';
 
 export default function getWeatherIcon(
-  value: number | undefined
-): ReactElement | undefined {
+  parameters: IParameter[]
+): string | undefined {
+  const value = parameters.find((p) => p.name === 'Wsymb2')?.values[0];
   switch (value) {
     case 1:
-      return <i className="wi wi-day-sunny"></i>;
+      return 'wi wi-day-sunny';
     case 2:
-      return <i className="wi wi-day-cloudy"></i>;
+      return 'wi wi-day-cloudy';
     case 3:
-      return <i className="wi wi-cloudy"></i>;
+      return 'wi wi-cloudy';
     case 4:
-      return <i className="wi wi-cloudy"></i>;
+      return 'wi wi-cloudy';
     case 5:
-      return <i className="wi wi-cloudy"></i>;
+      return 'wi wi-cloudy';
     case 6:
-      return <i className="wi wi-cloudy"></i>;
+      return 'wi wi-cloudy';
     case 7:
-      return <i className="wi wi-fog"></i>;
+      return 'wi wi-fog';
     case 8:
-      return <i className="wi wi-showers"></i>;
+      return 'wi wi-showers';
     case 9:
-      return <i className="wi wi-rain"></i>;
+      return 'wi wi-rain';
     case 10:
-      return <i className="wi wi-rain"></i>;
+      return 'wi wi-rain';
     case 11:
-      return <i className="wi wi-lightning"></i>;
+      return 'wi wi-lightning';
     case 12:
-      return <i className="wi wi-sleet"></i>;
+      return 'wi wi-sleet';
     case 13:
-      return <i className="wi wi-sleet"></i>;
+      return 'wi wi-sleet';
     case 14:
-      return <i className="wi wi-sleet"></i>;
+      return 'wi wi-sleet';
     case 15:
-      return <i className="wi wi-snow"></i>;
+      return 'wi wi-snow';
     case 16:
-      return <i className="wi wi-snow"></i>;
+      return 'wi wi-snow';
     case 17:
-      return <i className="wi wi-snow"></i>;
+      return 'wi wi-snow';
     case 18:
-      return <i className="wi wi-showers"></i>;
+      return 'wi wi-showers';
     case 19:
-      return <i className="wi wi-rain"></i>;
+      return 'wi wi-rain';
     case 20:
-      return <i className="wi wi-rain"></i>;
+      return 'wi wi-rain';
     case 21:
-      return <i className="wi wi-lightning"></i>;
+      return 'wi wi-lightning';
     case 22:
-      return <i className="wi wi-sleet"></i>;
+      return 'wi wi-sleet';
     case 23:
-      return <i className="wi wi-sleet"></i>;
+      return 'wi wi-sleet';
     case 24:
-      return <i className="wi wi-sleet"></i>;
+      return 'wi wi-sleet';
     case 25:
-      return <i className="wi wi-snow"></i>;
+      return 'wi wi-snow';
     case 26:
-      return <i className="wi wi-snow"></i>;
+      return 'wi wi-snow';
     case 27:
-      return <i className="wi wi-snow"></i>;
+      return 'wi wi-snow';
   }
 }

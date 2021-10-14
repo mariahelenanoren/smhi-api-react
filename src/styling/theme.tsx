@@ -2,10 +2,10 @@ import { createTheme } from '@material-ui/core/styles';
 
 export const theme = createTheme({
   palette: {
-    divider: '#000000',
+    divider: 'rgba(000, 000, 000, 0.3)',
     type: 'light',
     primary: {
-      main: '#ffffff',
+      main: '#95b3cf',
       contrastText: '#000000',
     },
     secondary: {

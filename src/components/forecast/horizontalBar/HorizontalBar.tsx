@@ -2,6 +2,7 @@ import { Box, Typography } from '@material-ui/core';
 
 import { IForecast } from '../../../contexts/weatherContext';
 import { convertUTCTime } from '../../../utils';
+import getWeatherIcon from '../../../utils/getWeatherIcon';
 import TemplateComponent from '../../templateComponent/templateComponent';
 import useStyles from './style';
 
@@ -25,6 +26,11 @@ export default function HorizontalBar(props: IProps) {
                 ) : (
                   <Typography>{convertUTCTime(forecast.validTime)}</Typography>
                 )}
+                <i
+                  className={`${getWeatherIcon(forecast.parameters)} ${
+                    classes.weatherIcon
+                  }`}
+                ></i>
                 {forecast.parameters.map((parameter, index) =>
                   parameter.name === 't' ? (
                     <Typography key={index}>

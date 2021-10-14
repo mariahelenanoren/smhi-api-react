@@ -19,10 +19,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     marginRight: 10,
     marginLeft: 10,
-    '& p': {
-      marginTop: 5,
-      marginBottom: 5,
-    },
+  },
+  weatherIcon: {
+    marginTop: 10,
+    marginBottom: 10,
+    color: theme.palette.primary.main,
   },
   bold: {
     fontWeight: 600,

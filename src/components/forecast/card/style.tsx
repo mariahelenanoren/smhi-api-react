@@ -14,7 +14,16 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 10,
     marginTop: 10,
   },
-  bottomContainer: {
+  weatherIcon: {
+    marginLeft: 10,
+    fontSize: '1.2rem',
+    color: theme.palette.primary.main,
+  },
+  localityContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  municipalityContainer: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'end',

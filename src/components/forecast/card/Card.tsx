@@ -5,6 +5,7 @@ import { CityContext, ICity } from '../../../contexts/cityContext';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { IForecast, WeatherContext } from '../../../contexts/weatherContext';
 import useStyles from './style';
+import getWeatherIcon from '../../../utils/getWeatherIcon';
 
 interface IProps {
   city: ICity;
@@ -49,8 +50,15 @@ export default function Card({ city }: IProps) {
           </div>
           <Divider className={classes.divider} />
           <div>
-            <Typography variant="h6">{city.municipality}</Typography>
-            <div className={classes.bottomContainer}>
+            <div className={classes.localityContainer}>
+              <Typography variant="h6">{city.locality}</Typography>
+              <i
+                className={`${getWeatherIcon(todaysForecast[0].parameters)} ${
+                  classes.weatherIcon
+                }`}
+              ></i>
+            </div>
+            <div className={classes.municipalityContainer}>
               <Typography color="textSecondary">{city.municipality}</Typography>
               <Typography onClick={handleClick} className={classes.link}>
                 Läs mer

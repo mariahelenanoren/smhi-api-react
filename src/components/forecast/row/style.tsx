@@ -12,6 +12,14 @@ const useStyles = makeStyles((theme) => ({
     padding: 20,
     backgroundColor: theme.palette.secondary.main,
   },
+  forecastContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  weatherIcon: {
+    marginLeft: 10,
+    color: theme.palette.primary.main,
+  },
 }));
 
 export default useStyles;

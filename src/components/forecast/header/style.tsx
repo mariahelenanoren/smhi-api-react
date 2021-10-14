@@ -17,6 +17,15 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 15,
     alignItems: 'flex-end',
   },
+  localityContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  weatherIcon: {
+    marginLeft: 15,
+    fontSize: '2rem',
+    color: theme.palette.primary.main,
+  },
   heart: {
     '&:hover': {
       cursor: 'pointer',

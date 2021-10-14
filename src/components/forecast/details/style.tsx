@@ -7,8 +7,8 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 60,
     zIndex: 1,
   },
-  grid: {
-    marginLeft: 50,
+  gridContainer: {
+    flex: 1,
   },
   temperature: {
     [theme.breakpoints.only('xs')]: {
