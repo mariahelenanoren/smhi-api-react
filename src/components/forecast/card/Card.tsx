@@ -40,10 +40,9 @@ export default function Card({ city }: IProps) {
         <>
           <div className={classes.topContainer}>
             <Typography variant="h2">
-              {
-                todaysForecast[0].parameters.find((p) => p.name === 't')
-                  ?.values[0]
-              }
+              {todaysForecast[0].parameters
+                .find((p) => p.name === 't')
+                ?.values[0].toFixed(0)}
               &deg;C
             </Typography>
             <FavoriteIcon onClick={handleRemoveFavorite} />

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Container, Grid, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 
 import { IForecast } from '../../../contexts/weatherContext';
 import {
@@ -42,7 +42,7 @@ export default function Details(props: IProps) {
       <Grid container className={classes.root}>
         <Grid item xs={3}>
           <Typography variant="h2">
-            {getParameterValue('t', forecast.parameters)}
+            {getParameterValue('t', forecast.parameters)?.toFixed(0)}
             &deg;
           </Typography>
         </Grid>

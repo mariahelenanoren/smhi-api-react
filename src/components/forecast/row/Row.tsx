@@ -22,7 +22,9 @@ export default function Row(props: IProps) {
                 <Typography>{getForecastDate(index)}</Typography>
                 {forecast.parameters.map((parameter) =>
                   parameter.name === 't' ? (
-                    <Typography>{parameter.values[0]}&deg;C</Typography>
+                    <Typography>
+                      {parameter.values[0].toFixed(0)}&deg;C
+                    </Typography>
                   ) : null
                 )}
               </Box>

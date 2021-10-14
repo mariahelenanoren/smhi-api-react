@@ -13,7 +13,7 @@ export default function getApparentTemperature(parameters: IParameter[]) {
     if ((w < 2 || w > 35) && (t > 10 || t < -40)) {
       return t;
     } else {
-      return calculation.toFixed(1);
+      return calculation.toFixed(0);
     }
   } else {
     return undefined;

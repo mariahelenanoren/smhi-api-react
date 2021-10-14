@@ -28,7 +28,7 @@ export default function HorizontalBar(props: IProps) {
                 {forecast.parameters.map((parameter, index) =>
                   parameter.name === 't' ? (
                     <Typography key={index}>
-                      {parameter.values[0]}&deg;C
+                      {parameter.values[0].toFixed(0)}&deg;C
                     </Typography>
                   ) : null
                 )}
