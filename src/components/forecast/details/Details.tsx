@@ -39,12 +39,14 @@ export default function Details(props: IProps) {
 
   return (
     <TemplateComponent>
-      <Container className={classes.root}>
-        <Typography variant="h2">
-          {getParameterValue('t', forecast.parameters)}
-          &deg;
-        </Typography>
-        <Grid className={classes.grid} container spacing={3}>
+      <Grid container className={classes.root}>
+        <Grid item xs={3}>
+          <Typography variant="h2">
+            {getParameterValue('t', forecast.parameters)}
+            &deg;
+          </Typography>
+        </Grid>
+        <Grid item container xs={9} spacing={3}>
           <Grid item sm={3} xs={6}>
             <Typography>Soluppgång</Typography>
             <Typography variant="h4">
@@ -88,7 +90,7 @@ export default function Details(props: IProps) {
             </Typography>
           </Grid>
         </Grid>
-      </Container>
+      </Grid>
     </TemplateComponent>
   );
 }

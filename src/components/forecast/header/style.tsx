@@ -17,6 +17,11 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 15,
     alignItems: 'flex-end',
   },
+  heart: {
+    '& :hover': {
+      cursor: 'pointer',
+    },
+  },
   divider: {
     height: 2,
     backgroundColor: theme.palette.divider,

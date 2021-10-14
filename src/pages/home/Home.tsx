@@ -1,7 +1,6 @@
 import { Box, Container, Grid } from '@material-ui/core';
 import { useContext } from 'react';
 
-import backgroundImage from '../../assets/fall.jpg';
 import Card from '../../components/forecast/card/Card';
 import TemplateComponent from '../../components/templateComponent/templateComponent';
 import { CityContext } from '../../contexts/cityContext';
@@ -13,12 +12,13 @@ export default function Home() {
 
   return (
     <Box>
-      <Box className={classes.backgroundImage}></Box>
-      {/* <img
-        className={classes.backgroundImage}
-        src={backgroundImage}
-        alt="background"
-      /> */}
+      <div className={classes.imageContainer}>
+        <img
+          className={classes.backgroundImage}
+          src={'/assets/background.jpg'}
+          alt="background"
+        />
+      </div>
       <TemplateComponent>
         <Grid container spacing={2}>
           {savedCities.map((city, index) => (

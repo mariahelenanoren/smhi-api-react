@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     height: 'calc(100% + 5rem)',
     width: '100%',
     objectFit: 'cover',
-    opacity: '0.2',
+    opacity: '0.5',
   },
 }));
 

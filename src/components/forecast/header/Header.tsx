@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Container, Divider, Typography } from '@material-ui/core';
+import { Box, Divider, Typography } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
@@ -37,22 +37,30 @@ export default function Header(props: IProps) {
 
   return (
     <TemplateComponent>
-      <Container className={classes.root}>
+      <Box className={classes.root}>
         <div className={classes.row}>
           <div>
-            <Typography variant="overline">{city.municipality}</Typography>
+            <Typography variant="h6" color="textSecondary">
+              {city.municipality}
+            </Typography>
             <Typography variant="h2">{city.locality}</Typography>
           </div>
           <div>
             {isFavorite ? (
-              <FavoriteIcon onClick={handleToggleFavorite} />
+              <FavoriteIcon
+                onClick={handleToggleFavorite}
+                className={classes.heart}
+              />
             ) : (
-              <FavoriteBorderIcon onClick={handleToggleFavorite} />
+              <FavoriteBorderIcon
+                onClick={handleToggleFavorite}
+                className={classes.heart}
+              />
             )}
           </div>
         </div>
         <Divider light className={classes.divider} />
-      </Container>
+      </Box>
     </TemplateComponent>
   );
 }

@@ -9,11 +9,12 @@ export const theme = createTheme({
       contrastText: '#000000',
     },
     secondary: {
-      main: '#f0f0f0',
+      main: '#f5f6f7',
       contrastText: '#000000',
     },
     text: {
       primary: '#000000',
+      secondary: 'rgba(000, 000, 000, 0.5)',
     },
   },
   typography: {
@@ -21,6 +22,7 @@ export const theme = createTheme({
       color: '#000000',
     },
     h2: {
+      fontWeight: 400,
       fontSize: '3.5rem',
     },
     overline: {

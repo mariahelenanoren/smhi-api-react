@@ -1,12 +1,19 @@
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
-  backgroundImage: {
-    marginTop: '-5rem',
-    height: '25rem',
+  imageContainer: {
+    position: 'relative',
+    height: 350,
     width: '100%',
+    marginTop: '-5rem',
+  },
+  backgroundImage: {
+    height: '100%',
+    width: '100%',
+    position: 'absolute',
     objectFit: 'cover',
-    opacity: '0.2',
+    objectPosition: 'center',
+    opacity: '0.5',
   },
 });
 
