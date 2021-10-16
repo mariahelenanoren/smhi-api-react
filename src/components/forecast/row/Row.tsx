@@ -19,12 +19,12 @@ export default function Row(props: IProps) {
         <Grid container direction="column">
           {forecasts.map((forecast, index) =>
             index < 7 ? (
-              <Box className={classes.row}>
+              <Box key={index} className={classes.row}>
                 <Typography>{getForecastDate(index)}</Typography>
                 <div className={classes.forecastContainer}>
-                  {forecast.parameters.map((parameter) =>
+                  {forecast.parameters.map((parameter, index) =>
                     parameter.name === 't' ? (
-                      <Typography>
+                      <Typography key={index}>
                         {parameter.values[0].toFixed(0)}&deg;C
                       </Typography>
                     ) : null

@@ -1,6 +1,12 @@
 import { useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { Box, InputAdornment, TextField, Typography } from '@material-ui/core';
+import { useRouter } from 'next/router';
+import {
+  Box,
+  InputAdornment,
+  TextField,
+  Typography,
+  Link,
+} from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { Autocomplete } from '@material-ui/lab';
 
@@ -10,12 +16,15 @@ import TemplateComponent from '../templateComponent/templateComponent';
 
 export default function Header() {
   const classes = useStyles();
-  const history = useHistory();
+  const router = useRouter();
 
   const { allCities } = useContext(CityContext);
 
   const handleSearch = (city: ICity) => {
-    history.push(`/${city.municipality}+${city.locality}`, city);
+    router.push({
+      pathname: '/[municipality]/[locality]',
+      query: { municipality: city.municipality, locality: city.locality },
+    });
   };
 
   return (
@@ -23,7 +32,7 @@ export default function Header() {
       <Box className={classes.root}>
         <div>
           <Typography variant="h1">Väder</Typography>
-          <Link to="/">
+          <Link href="/">
             <Typography>Hem</Typography>
           </Link>
         </div>

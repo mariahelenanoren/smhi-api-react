@@ -1,8 +1,8 @@
-import { Box } from '@material-ui/core';
 import React, { useState, useContext, useEffect } from 'react';
-import { useHistory, withRouter } from 'react-router-dom';
+import { Box } from '@material-ui/core';
+import { useRouter } from 'next/router';
 
-import { ICity } from '../../contexts/cityContext';
+import { CityContext } from '../../contexts/cityContext';
 import { IForecast, WeatherContext } from '../../contexts/weatherContext';
 import Header from '../../components/forecast/header/Header';
 import HorizontalBar from '../../components/forecast/horizontalBar/HorizontalBar';
@@ -10,27 +10,34 @@ import Row from '../../components/forecast/row/Row';
 import Details from '../../components/forecast/details/Details';
 import useStyles from './style';
 
-const Forecast = () => {
+export default function Forecast() {
   const classes = useStyles();
-  const history = useHistory<ICity>();
-  const city = history.location.state;
+  const router = useRouter();
   const { getTodaysForecast, getWeeklyForecasts } = useContext(WeatherContext);
+  const { allCities } = useContext(CityContext);
+  const city = allCities.find(
+    (c) =>
+      c.municipality === router.query.municipality &&
+      c.locality === router.query.locality
+  );
   const [todaysForecast, setTodaysForecast] = useState<IForecast[] | void>();
   const [weeklyForecasts, setWeeklyForecasts] = useState<IForecast[] | void>();
 
   useEffect(() => {
     async function fetchData() {
-      const forecast = await getTodaysForecast(city);
+      const forecast = await getTodaysForecast(city!);
       setTodaysForecast(forecast);
-      const forecasts = await getWeeklyForecasts(city);
+      const forecasts = await getWeeklyForecasts(city!);
       setWeeklyForecasts(forecasts);
     }
-    fetchData();
+    if (city) {
+      fetchData();
+    }
   }, [getTodaysForecast, getWeeklyForecasts, city]);
 
   return (
-    <Box className={classes.root}>
-      {todaysForecast && weeklyForecasts ? (
+    <>
+      {todaysForecast && weeklyForecasts && city ? (
         <>
           <Box className={classes.imageContainer}>
             <img
@@ -47,8 +54,6 @@ const Forecast = () => {
       ) : (
         <p>Loading...</p>
       )}
-    </Box>
+    </>
   );
-};
-
-export default withRouter(Forecast);
+}
