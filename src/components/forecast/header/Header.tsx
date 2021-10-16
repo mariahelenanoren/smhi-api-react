@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
-import { Box, Divider, Typography } from '@material-ui/core';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import { Box, Divider, IconButton, Typography } from '@material-ui/core';
+import { Favorite, FavoriteBorder } from '@material-ui/icons';
 
 import useStyles from './style';
 import { ICity } from '../../../contexts/cityContext';
@@ -56,19 +55,23 @@ export default function Header({ city, forecast }: IProps) {
           </div>
           <div>
             {isFavorite ? (
-              <FavoriteIcon
+              <IconButton
                 onClick={handleToggleFavorite}
-                className={classes.heart}
-              />
+                aria-label="removeFavorite"
+              >
+                <Favorite fontSize="medium" className={classes.heart} />
+              </IconButton>
             ) : (
-              <FavoriteBorderIcon
+              <IconButton
                 onClick={handleToggleFavorite}
-                className={classes.heart}
-              />
+                aria-label="addFavorite"
+              >
+                <FavoriteBorder fontSize="medium" className={classes.heart} />
+              </IconButton>
             )}
           </div>
         </div>
-        <Divider light className={classes.divider} />
+        <Divider />
       </Box>
     </TemplateComponent>
   );

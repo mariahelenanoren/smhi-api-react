@@ -1,11 +1,6 @@
 import { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import {
-  Container,
-  InputAdornment,
-  TextField,
-  Typography,
-} from '@material-ui/core';
+import { Box, InputAdornment, TextField, Typography } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { Autocomplete } from '@material-ui/lab';
 
@@ -25,7 +20,7 @@ export default function Header() {
 
   return (
     <TemplateComponent>
-      <Container className={classes.root}>
+      <Box className={classes.root}>
         <div>
           <Typography variant="h1">Väder</Typography>
           <Link to="/">
@@ -47,7 +42,7 @@ export default function Header() {
               className={classes.textfield}
               placeholder="Sök stad eller ort..."
               variant="outlined"
-              size="medium"
+              size="small"
               InputProps={{
                 ...params.InputProps,
                 endAdornment: (
@@ -59,7 +54,7 @@ export default function Header() {
             />
           )}
         />
-      </Container>
+      </Box>
     </TemplateComponent>
   );
 }

@@ -5,9 +5,6 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     paddingTop: 50,
     zIndex: 1,
-    '& svg': {
-      fontSize: '2rem',
-    },
   },
   row: {
     display: 'flex',
@@ -23,17 +20,13 @@ const useStyles = makeStyles((theme) => ({
   },
   weatherIcon: {
     marginLeft: 15,
-    fontSize: '2rem',
+    fontSize: '1.5rem',
     color: theme.palette.primary.main,
   },
   heart: {
     '&:hover': {
       cursor: 'pointer',
     },
-  },
-  divider: {
-    height: 2,
-    backgroundColor: theme.palette.divider,
   },
 }));
 

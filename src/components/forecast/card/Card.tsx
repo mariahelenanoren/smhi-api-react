@@ -1,11 +1,12 @@
-import { Typography, Box, Divider } from '@material-ui/core';
 import { useState, useEffect, useContext } from 'react';
+import { Typography, Box, Divider } from '@material-ui/core';
+import { Favorite, FavoriteBorder } from '@material-ui/icons';
 import { useHistory } from 'react-router-dom';
+
 import { CityContext, ICity } from '../../../contexts/cityContext';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import { IForecast, WeatherContext } from '../../../contexts/weatherContext';
-import useStyles from './style';
 import getWeatherIcon from '../../../utils/getWeatherIcon';
+import useStyles from './style';
 
 interface IProps {
   city: ICity;
@@ -15,6 +16,7 @@ export default function Card({ city }: IProps) {
   const classes = useStyles();
   const history = useHistory();
   const [todaysForecast, setTodaysForecast] = useState<IForecast[] | void>();
+  const [isFavoriteHover, setFavoriteHover] = useState(false);
   const { getTodaysForecast } = useContext(WeatherContext);
   const { removeCity } = useContext(CityContext);
 
@@ -29,6 +31,10 @@ export default function Card({ city }: IProps) {
 
   const handleRemoveFavorite = () => {
     removeCity(city);
+  };
+
+  const handleFavoriteHover = () => {
+    setFavoriteHover(!isFavoriteHover);
   };
 
   const handleClick = () => {
@@ -46,7 +52,19 @@ export default function Card({ city }: IProps) {
                 ?.values[0].toFixed(0)}
               &deg;C
             </Typography>
-            <FavoriteIcon onClick={handleRemoveFavorite} />
+            {isFavoriteHover ? (
+              <FavoriteBorder
+                onMouseEnter={handleFavoriteHover}
+                onMouseLeave={handleFavoriteHover}
+                onClick={handleRemoveFavorite}
+              />
+            ) : (
+              <Favorite
+                onMouseEnter={handleFavoriteHover}
+                onMouseLeave={handleFavoriteHover}
+                onClick={handleRemoveFavorite}
+              />
+            )}
           </div>
           <Divider className={classes.divider} />
           <div>

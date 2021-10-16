@@ -10,6 +10,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'start',
   },
+  heart: {
+    '&:hover': {
+      cursor: 'pointer',
+    },
+  },
   divider: {
     marginBottom: 10,
     marginTop: 10,

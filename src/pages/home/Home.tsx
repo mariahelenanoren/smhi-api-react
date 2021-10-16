@@ -1,4 +1,4 @@
-import { Box, Container, Grid } from '@material-ui/core';
+import { Box, Grid } from '@material-ui/core';
 import { useContext } from 'react';
 
 import Card from '../../components/forecast/card/Card';
