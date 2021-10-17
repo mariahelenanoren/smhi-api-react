@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@material-ui/core';
 
-import Header from '../../components/header/Header';
+import { Header, Footer } from '../../components';
 import useStyles from './style';
 
 interface IProps {
@@ -14,6 +14,7 @@ export default function Layout({ children }: IProps) {
     <>
       <Header />
       <Box className={classes.root}>{children}</Box>
+      <Footer />
     </>
   );
 }
