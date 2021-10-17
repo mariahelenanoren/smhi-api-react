@@ -1,9 +1,9 @@
 import { Box, Container, Typography, Grid } from '@material-ui/core';
 import { IForecast } from '../../../contexts/weatherContext';
-import { getForecastDate } from '../../../utils';
 import getWeatherIcon from '../../../utils/getWeatherIcon';
 import { TemplateComponent } from '../../';
 import useStyles from './style';
+import { formatDate } from '../../../utils';
 
 interface IProps {
   forecasts: IForecast[];
@@ -20,7 +20,7 @@ export default function Row(props: IProps) {
           {forecasts.map((forecast, index) =>
             index < 7 ? (
               <Box key={index} className={classes.row}>
-                <Typography>{getForecastDate(index)}</Typography>
+                <Typography>{formatDate(forecast.validTime)}</Typography>
                 <div className={classes.forecastContainer}>
                   {forecast.parameters.map((parameter, index) =>
                     parameter.name === 't' ? (

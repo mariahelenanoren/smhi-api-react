@@ -4,7 +4,7 @@ import { Box, Grid, Typography } from '@material-ui/core';
 import { TemplateComponent, Card } from '../../components';
 import { CityContext } from '../../contexts/cityContext';
 import useStyles from './style';
-import { formatDate } from '../../utils';
+import { formatToday } from '../../utils';
 
 export default function Home() {
   const today = new Date();
@@ -17,7 +17,7 @@ export default function Home() {
         <Box className={classes.greetingContainer}>
           <TemplateComponent>
             <Typography>Idag</Typography>
-            <Typography variant="h5">{formatDate(today)}</Typography>
+            <Typography variant="h5">{formatToday(today)}</Typography>
           </TemplateComponent>
         </Box>
         <img
