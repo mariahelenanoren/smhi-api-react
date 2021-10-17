@@ -29,7 +29,11 @@ export default function Header({ city, forecast }: IProps) {
 
   /* Sets the initial favorite state of the city */
   useEffect(() => {
-    if (savedCities.find((c) => c === city)) {
+    if (
+      savedCities.find(
+        (c) => c.latitude === city.latitude && c.longitude === city.longitude
+      )
+    ) {
       setFavorite(true);
     } else {
       setFavorite(false);

@@ -50,7 +50,11 @@ function CityProvider(props: IProps) {
   };
 
   const removeCity = (city: ICity) => {
-    setSavedCities(savedCities.filter((c) => c !== city));
+    setSavedCities(
+      savedCities.filter(
+        (c) => c.longitude !== city.longitude && c.latitude !== city.latitude
+      )
+    );
   };
 
   const fetchCities = useCallback(async () => {
