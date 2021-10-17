@@ -1,24 +1,31 @@
-import { Box, Grid } from '@material-ui/core';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
+import { Box, Grid, Typography } from '@material-ui/core';
 
-import Card from '../../components/forecast/card/Card';
-import { TemplateComponent } from '../../components';
+import { TemplateComponent, Card } from '../../components';
 import { CityContext } from '../../contexts/cityContext';
 import useStyles from './style';
+import { formatDate } from '../../utils';
 
 export default function Home() {
+  const today = new Date();
   const classes = useStyles();
   const { savedCities } = useContext(CityContext);
 
   return (
     <Box>
-      <div className={classes.imageContainer}>
+      <Box className={classes.imageContainer}>
+        <Box className={classes.greetingContainer}>
+          <TemplateComponent>
+            <Typography>Idag</Typography>
+            <Typography variant="h5">{formatDate(today)}</Typography>
+          </TemplateComponent>
+        </Box>
         <img
           className={classes.backgroundImage}
           src={'/assets/background.jpg'}
           alt="background"
         />
-      </div>
+      </Box>
       <TemplateComponent>
         <Grid container spacing={1}>
           {savedCities.map((city, index) => (

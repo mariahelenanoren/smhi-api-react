@@ -7,6 +7,13 @@ const useStyles = makeStyles({
     width: '100%',
     marginTop: '-5rem',
   },
+  greetingContainer: {
+    width: '100%',
+    position: 'absolute',
+    bottom: '2rem',
+    left: 0,
+    zIndex: 1,
+  },
   backgroundImage: {
     height: '100%',
     width: '100%',
