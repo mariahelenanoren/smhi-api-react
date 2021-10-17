@@ -6,7 +6,7 @@ export const theme = createTheme({
     type: 'light',
     primary: {
       main: '#95b3cf',
-      contrastText: '#000000',
+      contrastText: '#ffffff',
     },
     secondary: {
       main: '#f5f6f7',
@@ -14,13 +14,13 @@ export const theme = createTheme({
     },
     text: {
       primary: '#000000',
-      secondary: 'rgba(000, 000, 000, 0.5)',
+      secondary: '#737373',
+    },
+    background: {
+      default: '#ffffff',
     },
   },
   typography: {
-    allVariants: {
-      color: '#000000',
-    },
     h2: {
       fontWeight: 300,
       fontSize: '5.5rem',

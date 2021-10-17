@@ -11,10 +11,10 @@ interface IProps {
 export default function Layout({ children }: IProps) {
   const classes = useStyles();
   return (
-    <>
+    <Box className={classes.root}>
       <Header />
-      <Box className={classes.root}>{children}</Box>
+      <Box className={classes.main}>{children}</Box>
       <Footer />
-    </>
+    </Box>
   );
 }

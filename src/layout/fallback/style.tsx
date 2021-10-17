@@ -5,12 +5,12 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: theme.palette.background.default,
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
   },
-  main: {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
+  button: {
+    marginTop: 30,
   },
 }));
 
