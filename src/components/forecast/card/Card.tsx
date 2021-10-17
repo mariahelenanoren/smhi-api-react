@@ -1,13 +1,13 @@
 import { useState, useEffect, useContext } from 'react';
+import { useRouter } from 'next/router';
 import { Typography, Box, Divider } from '@material-ui/core';
 import { Favorite, FavoriteBorder } from '@material-ui/icons';
-import { useHistory } from 'react-router-dom';
+import { Skeleton } from '@material-ui/lab';
 
 import { CityContext, ICity } from '../../../contexts/cityContext';
 import { IForecast, WeatherContext } from '../../../contexts/weatherContext';
 import getWeatherIcon from '../../../utils/getWeatherIcon';
 import useStyles from './style';
-import { Skeleton } from '@material-ui/lab';
 
 interface IProps {
   city: ICity;
@@ -15,7 +15,7 @@ interface IProps {
 
 export default function Card({ city }: IProps) {
   const classes = useStyles();
-  const history = useHistory();
+  const router = useRouter();
   const [todaysForecast, setTodaysForecast] = useState<IForecast[] | void>();
   const [isFavoriteHover, setFavoriteHover] = useState(false);
   const { getTodaysForecast } = useContext(WeatherContext);
@@ -26,7 +26,6 @@ export default function Card({ city }: IProps) {
       const forecast = await getTodaysForecast(city);
       setTodaysForecast(forecast);
     }
-    console.log(city);
     fetchData();
   }, [getTodaysForecast, city]);
 
@@ -39,7 +38,10 @@ export default function Card({ city }: IProps) {
   };
 
   const handleClick = () => {
-    history.push(`/${city.municipality}+${city.locality}`, city);
+    router.push({
+      pathname: '/[municipality]/[locality]',
+      query: { municipality: city.municipality, locality: city.locality },
+    });
   };
 
   return (
