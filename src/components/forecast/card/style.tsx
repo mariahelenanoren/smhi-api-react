@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   skeleton: {
-    height: 300,
+    height: 190,
   },
 }));
 

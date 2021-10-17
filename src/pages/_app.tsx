@@ -8,6 +8,7 @@ import WeatherProvider from '../contexts/weatherContext';
 import { theme } from '../styling/theme';
 import Layout from '../layout/layout/layout';
 import '../styling/weather-icons.css';
+import '../styling/index.css';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

@@ -56,12 +56,14 @@ export default function Card({ city }: IProps) {
               </Typography>
               {isFavoriteHover ? (
                 <FavoriteBorder
+                  className={classes.heart}
                   onMouseEnter={handleFavoriteHover}
                   onMouseLeave={handleFavoriteHover}
                   onClick={handleRemoveFavorite}
                 />
               ) : (
                 <Favorite
+                  className={classes.heart}
                   onMouseEnter={handleFavoriteHover}
                   onMouseLeave={handleFavoriteHover}
                   onClick={handleRemoveFavorite}
@@ -90,7 +92,7 @@ export default function Card({ city }: IProps) {
           </>
         </Box>
       ) : (
-        <Skeleton className={classes.skeleton} />
+        <Skeleton variant="rect" className={classes.skeleton} />
       )}
     </>
   );

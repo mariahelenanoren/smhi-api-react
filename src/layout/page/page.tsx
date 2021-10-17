@@ -1,12 +1,16 @@
-import { Box, CircularProgress } from '@material-ui/core';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Box } from '@material-ui/core';
 import { useRouter } from 'next/router';
+
+import useStyles from './style';
+import { Progress } from '../../components';
 
 interface IProps {
   children?: React.ReactNode;
 }
 
 export default function Page({ children }: IProps) {
+  const classes = useStyles();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -27,5 +31,9 @@ export default function Page({ children }: IProps) {
       router.events.on('routeChangeComplete', handleRouteComplete);
     };
   }, [router.events]);
-  return <>{loading ? <CircularProgress /> : <Box>{children}</Box>}</>;
+  return (
+    <>
+      {loading ? <Progress /> : <Box className={classes.root}>{children}</Box>}
+    </>
+  );
 }
