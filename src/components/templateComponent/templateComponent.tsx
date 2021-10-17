@@ -7,12 +7,11 @@ interface IProps {
   children: ReactChild[] | ReactChild;
 }
 
-const TemplateComponent = ({ children }: IProps) => {
+export default function TemplateComponent({ children }: IProps) {
   const classes = useStyles();
   return (
     <Container maxWidth="lg" className={classes.root}>
       {children}
     </Container>
   );
-};
-export default TemplateComponent;
+}

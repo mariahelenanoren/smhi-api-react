@@ -7,6 +7,7 @@ import CityProvider from '../contexts/cityContext';
 import WeatherProvider from '../contexts/weatherContext';
 import { theme } from '../styling/theme';
 import Layout from '../layout/layout/layout';
+import '../styling/weather-icons.css';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

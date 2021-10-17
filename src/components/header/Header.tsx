@@ -12,7 +12,7 @@ import { Autocomplete } from '@material-ui/lab';
 
 import { ICity, CityContext } from '../../contexts/cityContext';
 import useStyles from './style';
-import TemplateComponent from '../templateComponent/templateComponent';
+import { TemplateComponent } from '../../components';
 
 export default function Header() {
   const classes = useStyles();

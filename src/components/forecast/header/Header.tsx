@@ -5,7 +5,7 @@ import { Favorite, FavoriteBorder } from '@material-ui/icons';
 import useStyles from './style';
 import { ICity } from '../../../contexts/cityContext';
 import { CityContext } from '../../../contexts/cityContext';
-import TemplateComponent from '../../templateComponent/templateComponent';
+import { TemplateComponent } from '../../';
 import { IForecast } from '../../../contexts/weatherContext';
 import getWeatherIcon from '../../../utils/getWeatherIcon';
 

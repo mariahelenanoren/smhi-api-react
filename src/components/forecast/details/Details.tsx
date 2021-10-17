@@ -10,7 +10,7 @@ import {
 } from '../../../utils';
 import { ICity } from '../../../contexts/cityContext';
 import useStyles from './style';
-import TemplateComponent from '../../templateComponent/templateComponent';
+import { TemplateComponent } from '../../';
 
 interface IProps {
   forecast: IForecast;

@@ -2,7 +2,7 @@ import { Box, Grid } from '@material-ui/core';
 import { useContext } from 'react';
 
 import Card from '../../components/forecast/card/Card';
-import TemplateComponent from '../../components/templateComponent/templateComponent';
+import { TemplateComponent } from '../../components';
 import { CityContext } from '../../contexts/cityContext';
 import useStyles from './style';
 

@@ -7,6 +7,7 @@ import { CityContext, ICity } from '../../../contexts/cityContext';
 import { IForecast, WeatherContext } from '../../../contexts/weatherContext';
 import getWeatherIcon from '../../../utils/getWeatherIcon';
 import useStyles from './style';
+import { Skeleton } from '@material-ui/lab';
 
 interface IProps {
   city: ICity;
@@ -42,49 +43,55 @@ export default function Card({ city }: IProps) {
   };
 
   return (
-    <Box className={classes.root}>
+    <>
       {todaysForecast ? (
-        <>
-          <div className={classes.topContainer}>
-            <Typography variant="h3">
-              {todaysForecast[0].parameters
-                .find((p) => p.name === 't')
-                ?.values[0].toFixed(0)}
-              &deg;C
-            </Typography>
-            {isFavoriteHover ? (
-              <FavoriteBorder
-                onMouseEnter={handleFavoriteHover}
-                onMouseLeave={handleFavoriteHover}
-                onClick={handleRemoveFavorite}
-              />
-            ) : (
-              <Favorite
-                onMouseEnter={handleFavoriteHover}
-                onMouseLeave={handleFavoriteHover}
-                onClick={handleRemoveFavorite}
-              />
-            )}
-          </div>
-          <Divider className={classes.divider} />
-          <div>
-            <div className={classes.localityContainer}>
-              <Typography variant="h6">{city.locality}</Typography>
-              <i
-                className={`${getWeatherIcon(todaysForecast[0].parameters)} ${
-                  classes.weatherIcon
-                }`}
-              ></i>
-            </div>
-            <div className={classes.municipalityContainer}>
-              <Typography color="textSecondary">{city.municipality}</Typography>
-              <Typography onClick={handleClick} className={classes.link}>
-                Läs mer
+        <Box className={classes.root}>
+          <>
+            <div className={classes.topContainer}>
+              <Typography variant="h3">
+                {todaysForecast[0].parameters
+                  .find((p) => p.name === 't')
+                  ?.values[0].toFixed(0)}
+                &deg;C
               </Typography>
+              {isFavoriteHover ? (
+                <FavoriteBorder
+                  onMouseEnter={handleFavoriteHover}
+                  onMouseLeave={handleFavoriteHover}
+                  onClick={handleRemoveFavorite}
+                />
+              ) : (
+                <Favorite
+                  onMouseEnter={handleFavoriteHover}
+                  onMouseLeave={handleFavoriteHover}
+                  onClick={handleRemoveFavorite}
+                />
+              )}
             </div>
-          </div>
-        </>
-      ) : null}
-    </Box>
+            <Divider className={classes.divider} />
+            <div>
+              <div className={classes.localityContainer}>
+                <Typography variant="h6">{city.locality}</Typography>
+                <i
+                  className={`${getWeatherIcon(todaysForecast[0].parameters)} ${
+                    classes.weatherIcon
+                  }`}
+                ></i>
+              </div>
+              <div className={classes.municipalityContainer}>
+                <Typography color="textSecondary">
+                  {city.municipality}
+                </Typography>
+                <Typography onClick={handleClick} className={classes.link}>
+                  Läs mer
+                </Typography>
+              </div>
+            </div>
+          </>
+        </Box>
+      ) : (
+        <Skeleton className={classes.skeleton} />
+      )}
+    </>
   );
 }

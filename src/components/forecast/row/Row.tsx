@@ -2,7 +2,7 @@ import { Box, Container, Typography, Grid } from '@material-ui/core';
 import { IForecast } from '../../../contexts/weatherContext';
 import { getForecastDate } from '../../../utils';
 import getWeatherIcon from '../../../utils/getWeatherIcon';
-import TemplateComponent from '../../templateComponent/templateComponent';
+import { TemplateComponent } from '../../';
 import useStyles from './style';
 
 interface IProps {

@@ -40,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
       cursor: 'pointer',
     },
   },
+  skeleton: {
+    height: 300,
+  },
 }));
 
 export default useStyles;

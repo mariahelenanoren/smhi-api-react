@@ -4,10 +4,13 @@ import { useRouter } from 'next/router';
 
 import { CityContext } from '../../contexts/cityContext';
 import { IForecast, WeatherContext } from '../../contexts/weatherContext';
-import Header from '../../components/forecast/header/Header';
-import HorizontalBar from '../../components/forecast/horizontalBar/HorizontalBar';
-import Row from '../../components/forecast/row/Row';
-import Details from '../../components/forecast/details/Details';
+import {
+  ForecastHeader,
+  HorizontalBar,
+  Row,
+  Details,
+  Progress,
+} from '../../components';
 import useStyles from './style';
 
 export default function Forecast() {
@@ -45,14 +48,14 @@ export default function Forecast() {
               src={'/assets/background.jpg'}
               alt="background"
             />
-            <Header city={city} forecast={todaysForecast[0]} />
+            <ForecastHeader city={city} forecast={todaysForecast[0]} />
             <Details city={city} forecast={todaysForecast[0]} />
           </Box>
           <HorizontalBar forecasts={todaysForecast} />
           <Row forecasts={weeklyForecasts} />
         </>
       ) : (
-        <p>Loading...</p>
+        <Progress />
       )}
     </>
   );
