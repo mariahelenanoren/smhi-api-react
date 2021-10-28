@@ -44,7 +44,7 @@ export default function Header() {
   return (
     <TemplateComponent>
       <Box className={classes.root}>
-        <div>
+        <div className={isMobileSearchOpen ? classes.transparent : undefined}>
           <Typography variant="h1">Väder</Typography>
           <Link href="/">
             <Typography>Hem</Typography>

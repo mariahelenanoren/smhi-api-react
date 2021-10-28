@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   icon: {
+    cursor: 'pointer',
     margin: 0,
   },
 }));

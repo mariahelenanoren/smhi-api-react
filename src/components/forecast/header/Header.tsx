@@ -1,5 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
-import { Box, Divider, IconButton, Typography } from '@material-ui/core';
+import {
+  Box,
+  Divider,
+  IconButton,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@material-ui/core';
 import { Favorite, FavoriteBorder } from '@material-ui/icons';
 
 import useStyles from './style';
@@ -16,8 +23,10 @@ interface IProps {
 
 export default function Header({ city, forecast }: IProps) {
   const { addNewCity, removeCity, savedCities } = useContext(CityContext);
+  const theme = useTheme();
   const classes = useStyles();
   const [isFavorite, setFavorite] = useState<boolean>();
+  const extraSmallScreen = useMediaQuery(theme.breakpoints.only('xs'));
 
   const handleToggleFavorite = () => {
     if (!isFavorite) {
@@ -49,7 +58,9 @@ export default function Header({ city, forecast }: IProps) {
               {city.municipality}
             </Typography>
             <div className={classes.localityContainer}>
-              <Typography variant="h4">{city.locality}</Typography>
+              <Typography variant={extraSmallScreen ? 'h5' : 'h4'}>
+                {city.locality}
+              </Typography>
               <i
                 className={`${getWeatherIcon(forecast.parameters)} ${
                   classes.weatherIcon

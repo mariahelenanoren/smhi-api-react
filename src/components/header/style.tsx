@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     '& div': {
+      transition: 'all 0.2s',
       display: 'flex',
       alignItems: 'center',
       '& h1': {
@@ -28,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   autocomplete: {
-    transition: 'all 0.4s ease-in',
+    position: 'absolute',
+    right: 0,
     '& fieldset': {
       border: 'none',
     },
@@ -36,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
   open: {
     maxWidth: 270,
     width: '100%',
+    [theme.breakpoints.only('xs')]: {
+      maxWidth: '100%',
+    },
   },
   close: {
     maxWidth: 46,
@@ -46,6 +51,9 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.common.white,
       opacity: 1,
     },
+  },
+  transparent: {
+    opacity: 0,
   },
 }));
 
