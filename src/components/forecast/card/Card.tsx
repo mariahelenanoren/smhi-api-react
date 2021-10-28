@@ -1,7 +1,7 @@
-import { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
-import { Typography, Box, Divider } from '@material-ui/core';
-import { Favorite, FavoriteBorder } from '@material-ui/icons';
+import { Typography, Box, Divider, IconButton } from '@material-ui/core';
+import { Favorite } from '@material-ui/icons';
 import { Skeleton } from '@material-ui/lab';
 
 import { CityContext, ICity } from '../../../contexts/cityContext';
@@ -17,7 +17,6 @@ export default function Card({ city }: IProps) {
   const classes = useStyles();
   const router = useRouter();
   const [todaysForecast, setTodaysForecast] = useState<IForecast[] | void>();
-  const [isFavoriteHover, setFavoriteHover] = useState(false);
   const { getTodaysForecast } = useContext(WeatherContext);
   const { removeCity } = useContext(CityContext);
 
@@ -31,10 +30,6 @@ export default function Card({ city }: IProps) {
 
   const handleRemoveFavorite = () => {
     removeCity(city);
-  };
-
-  const handleFavoriteHover = () => {
-    setFavoriteHover(!isFavoriteHover);
   };
 
   const handleClick = () => {
@@ -56,21 +51,12 @@ export default function Card({ city }: IProps) {
                   ?.values[0].toFixed(0)}
                 &deg;C
               </Typography>
-              {isFavoriteHover ? (
-                <FavoriteBorder
-                  className={classes.heart}
-                  onMouseEnter={handleFavoriteHover}
-                  onMouseLeave={handleFavoriteHover}
-                  onClick={handleRemoveFavorite}
-                />
-              ) : (
-                <Favorite
-                  className={classes.heart}
-                  onMouseEnter={handleFavoriteHover}
-                  onMouseLeave={handleFavoriteHover}
-                  onClick={handleRemoveFavorite}
-                />
-              )}
+              <IconButton
+                onClick={handleRemoveFavorite}
+                aria-label="removeFavorite"
+              >
+                <Favorite fontSize="medium" className={classes.heart} />
+              </IconButton>
             </div>
             <Divider className={classes.divider} />
             <div>

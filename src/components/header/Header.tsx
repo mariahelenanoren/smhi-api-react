@@ -48,12 +48,14 @@ export default function Header() {
           renderInput={(params) => (
             <TextField
               {...params}
-              className={classes.textfield}
+              color="secondary"
               placeholder="Sök stad eller ort..."
               variant="outlined"
               size="small"
+              className={classes.textfield}
               InputProps={{
                 ...params.InputProps,
+                classes: { input: classes.input },
                 endAdornment: (
                   <InputAdornment position="end">
                     <SearchIcon />

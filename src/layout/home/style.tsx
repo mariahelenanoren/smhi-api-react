@@ -20,7 +20,7 @@ const useStyles = makeStyles({
     position: 'absolute',
     objectFit: 'cover',
     objectPosition: 'center',
-    opacity: '0.5',
+    opacity: '0.2',
   },
 });
 

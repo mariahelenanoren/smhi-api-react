@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   weatherIcon: {
     marginLeft: 10,
-    color: theme.palette.primary.main,
+    color: theme.palette.text.primary,
   },
 }));
 

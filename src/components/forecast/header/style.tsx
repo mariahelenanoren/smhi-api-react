@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   weatherIcon: {
     marginLeft: 15,
     fontSize: '1.5rem',
-    color: theme.palette.primary.main,
+    color: theme.palette.text.primary,
   },
   heart: {
     '&:hover': {

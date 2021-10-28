@@ -2,19 +2,19 @@ import { createTheme } from '@material-ui/core/styles';
 
 export const theme = createTheme({
   palette: {
-    divider: 'rgba(000, 000, 000, 0.2)',
-    type: 'light',
+    divider: 'rgba(255, 255, 255, 0.3)',
+    type: 'dark',
     primary: {
-      main: '#95b3cf',
+      main: '#2C3647',
       contrastText: '#ffffff',
     },
     secondary: {
-      main: '#f5f6f7',
-      contrastText: '#000000',
+      main: '#1e2430',
+      contrastText: '#ffffff',
     },
     text: {
-      primary: '#000000',
-      secondary: '#737373',
+      primary: '#ffffff',
+      secondary: '#cccccc',
     },
     background: {
       default: '#ffffff',

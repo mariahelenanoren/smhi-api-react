@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
       '& a': {
         fontSize: '1rem',
         fontWeight: '400',
-        color: '#000000',
+        color: theme.palette.text.primary,
         textDecoration: 'none',
         '& p:hover': {
           textDecoration: 'underline',
@@ -28,13 +28,24 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   autocomplete: {
+    position: 'relative',
+    zIndex: 100,
     width: 270,
     '& fieldset': {
       border: 'none',
     },
   },
   textfield: {
-    backgroundColor: theme.palette.common.white,
+    paddingRight: 10,
+    paddingLeft: 10,
+    borderRadius: 100,
+    backgroundColor: theme.palette.divider,
+  },
+  input: {
+    '&::placeholder': {
+      color: theme.palette.common.white,
+      opacity: 1,
+    },
   },
 }));
 

@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   weatherIcon: {
     marginTop: 10,
     marginBottom: 10,
-    color: theme.palette.primary.main,
+    color: theme.palette.text.primary,
   },
   bold: {
     fontWeight: 600,

@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: theme.palette.primary.main,
   },
   main: {
     flex: 1,

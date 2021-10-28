@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   weatherIcon: {
     marginLeft: 10,
     fontSize: '1.2rem',
-    color: theme.palette.primary.main,
+    color: theme.palette.text.primary,
   },
   localityContainer: {
     display: 'flex',
