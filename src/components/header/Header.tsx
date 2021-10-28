@@ -1,24 +1,38 @@
-import { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import {
   Box,
-  InputAdornment,
-  TextField,
   Typography,
   Link,
+  useMediaQuery,
+  useTheme,
 } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
 import { Autocomplete } from '@material-ui/lab';
 
 import { ICity, CityContext } from '../../contexts/cityContext';
-import useStyles from './style';
 import { TemplateComponent } from '../../components';
+import { MobileSearch, DesktopSearch } from '../search';
+import useStyles from './style';
 
 export default function Header() {
   const classes = useStyles();
   const router = useRouter();
+  const theme = useTheme();
+  const [isMobileSearchOpen, setMobileSearch] = useState(false);
+  const extraSmallScreen = useMediaQuery(theme.breakpoints.only('xs'));
 
   const { allCities } = useContext(CityContext);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth.toString() > theme.breakpoints.only('xs')) {
+        setMobileSearch(true);
+      } else {
+        setMobileSearch(false);
+      }
+    };
+    window.addEventListener('resize', handleResize, false);
+  }, [theme.breakpoints]);
 
   const handleSearch = (city: ICity) => {
     router.push({
@@ -38,32 +52,30 @@ export default function Header() {
         </div>
         <Autocomplete
           disableClearable
-          className={classes.autocomplete}
+          className={`${classes.autocomplete} ${
+            isMobileSearchOpen
+              ? classes.open
+              : extraSmallScreen
+              ? classes.close
+              : classes.open
+          }`}
           forcePopupIcon={false}
           options={allCities}
           getOptionLabel={(city: ICity) =>
             city.locality + ', ' + city.municipality
           }
           onChange={(event, value) => handleSearch(value)}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              color="secondary"
-              placeholder="Sök stad eller ort..."
-              variant="outlined"
-              size="small"
-              className={classes.textfield}
-              InputProps={{
-                ...params.InputProps,
-                classes: { input: classes.input },
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          )}
+          renderInput={(params) =>
+            extraSmallScreen ? (
+              <MobileSearch
+                params={params}
+                isMobileSearchOpen={isMobileSearchOpen}
+                setMobileSearch={setMobileSearch}
+              />
+            ) : (
+              <DesktopSearch params={params} />
+            )
+          }
         />
       </Box>
     </TemplateComponent>

@@ -28,18 +28,18 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   autocomplete: {
-    position: 'relative',
-    zIndex: 100,
-    width: 270,
+    transition: 'all 0.4s ease-in',
     '& fieldset': {
       border: 'none',
     },
   },
-  textfield: {
-    paddingRight: 10,
-    paddingLeft: 10,
-    borderRadius: 100,
-    backgroundColor: theme.palette.divider,
+  open: {
+    maxWidth: 270,
+    width: '100%',
+  },
+  close: {
+    maxWidth: 46,
+    width: 46,
   },
   input: {
     '&::placeholder': {

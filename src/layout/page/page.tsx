@@ -28,7 +28,7 @@ export default function Page({ children }: IProps) {
 
     return () => {
       router.events.off('routeChangeStart', handleRouteChange);
-      router.events.on('routeChangeComplete', handleRouteComplete);
+      router.events.off('routeChangeComplete', handleRouteComplete);
     };
   }, [router.events]);
   return (
