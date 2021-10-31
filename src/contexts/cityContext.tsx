@@ -36,6 +36,7 @@ function CityProvider(props: IProps) {
 
   useEffect(() => {
     const defaultCityNames = ['Stockholm', 'Göteborg', 'Malmö'];
+    /* Filters out default cities and sorts them in reverse alphabetically order */
     const defaultCities = allCities
       .filter((city) => defaultCityNames.includes(city.locality))
       .sort()
@@ -106,7 +107,11 @@ function CityProvider(props: IProps) {
         cityList.push(cityObject);
       }
     });
-    setAllCities(cityList);
+    /* Sorts list alphabetically */
+    const sortedCityList = cityList.sort((a, b) =>
+      a.locality > b.locality ? -1 : 1
+    );
+    setAllCities(sortedCityList);
   };
 
   return (
