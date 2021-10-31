@@ -60,9 +60,13 @@ export default function Header() {
               : classes.open
           }`}
           forcePopupIcon={false}
-          options={allCities}
+          options={allCities.sort((a, b) =>
+            a.locality === a.municipality ? -1 : 1
+          )}
           getOptionLabel={(city: ICity) =>
-            city.locality + ', ' + city.municipality
+            city.locality !== city.municipality
+              ? city.locality + ', ' + city.municipality
+              : city.locality
           }
           onChange={(event, value) => handleSearch(value)}
           renderInput={(params) =>
