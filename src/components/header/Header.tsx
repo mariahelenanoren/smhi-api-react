@@ -6,6 +6,7 @@ import {
   Link,
   useMediaQuery,
   useTheme,
+  Switch,
 } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 
@@ -13,11 +14,13 @@ import { ICity, CityContext } from '../../contexts/cityContext';
 import { TemplateComponent } from '../../components';
 import { MobileSearch, DesktopSearch } from '../search';
 import useStyles from './style';
+import { ThemeContext } from '../../contexts/themeContext';
 
 export default function Header() {
   const classes = useStyles();
   const router = useRouter();
   const theme = useTheme();
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
   const [isMobileSearchOpen, setMobileSearch] = useState(false);
   const extraSmallScreen = useMediaQuery(theme.breakpoints.only('xs'));
 
@@ -80,6 +83,12 @@ export default function Header() {
               <DesktopSearch params={params} />
             )
           }
+        />
+        <Switch
+          value={darkMode}
+          onChange={toggleDarkMode}
+          name="darkMode"
+          inputProps={{ 'aria-label': 'secondary checkbox' }}
         />
       </Box>
     </TemplateComponent>

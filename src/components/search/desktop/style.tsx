@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     '&::placeholder': {
-      color: theme.palette.common.white,
+      color: theme.palette.text.primary,
       opacity: 1,
     },
   },

@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: '0 !important',
     paddingLeft: '0 !important',
     '&::placeholder': {
-      color: theme.palette.common.white,
+      color: theme.palette.text.primary,
       opacity: 1,
     },
   },

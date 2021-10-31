@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   autocomplete: {
     position: 'absolute',
-    right: 0,
+    right: 60,
     '& fieldset': {
       border: 'none',
     },

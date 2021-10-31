@@ -17,12 +17,12 @@ interface Props {
   children: Object;
 }
 
-interface Context {
+interface IContext {
   getTodaysForecast: (city: ICity) => Promise<IForecast[] | undefined> | void;
   getWeeklyForecasts: (city: ICity) => Promise<IForecast[] | undefined> | void;
 }
 
-export const WeatherContext = createContext<Context>({
+export const WeatherContext = createContext<IContext>({
   getTodaysForecast: () => {},
   getWeeklyForecasts: () => {},
 });
