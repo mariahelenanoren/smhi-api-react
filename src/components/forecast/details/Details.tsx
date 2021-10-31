@@ -7,6 +7,7 @@ import {
   fetchSunData,
   getParameterValue,
   getApparentTemperature,
+  getWeatherCondition,
 } from '../../../utils';
 import { ICity } from '../../../contexts/cityContext';
 import useStyles from './style';
@@ -87,6 +88,15 @@ export default function Details(props: IProps) {
             <Typography>Lufttryck</Typography>
             <Typography variant="h5">
               {getParameterValue('msl', forecast.parameters)} hPa
+            </Typography>
+          </Grid>
+          <Grid item md={12} xs={12}>
+            <Typography variant="h6">
+              {`
+              Just nu: 
+              ${getWeatherCondition(
+                getParameterValue('Wsymb2', forecast.parameters) || 1
+              )}`}
             </Typography>
           </Grid>
         </Grid>
