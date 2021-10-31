@@ -43,8 +43,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   close: {
-    maxWidth: 46,
-    width: 46,
+    maxWidth: 40,
+    width: 40,
   },
   input: {
     '&::placeholder': {

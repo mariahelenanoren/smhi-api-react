@@ -2,8 +2,8 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   textfield: {
-    paddingRight: 5,
-    paddingLeft: 5,
+    paddingRight: 2,
+    paddingLeft: 2,
     borderRadius: 100,
     backgroundColor: theme.palette.divider,
   },
