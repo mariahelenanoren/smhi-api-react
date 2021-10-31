@@ -54,7 +54,13 @@ export default function Header({ city, forecast }: IProps) {
       <Box className={classes.root}>
         <div className={classes.row}>
           <div>
-            <Typography variant="h6" color="textSecondary">
+            <Typography
+              className={
+                city.locality === city.municipality ? classes.hidden : undefined
+              }
+              variant="h6"
+              color="textSecondary"
+            >
               {city.municipality}
             </Typography>
             <div className={classes.localityContainer}>

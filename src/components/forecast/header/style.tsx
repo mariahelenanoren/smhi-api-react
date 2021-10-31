@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
       cursor: 'pointer',
     },
   },
+  hidden: {
+    opacity: 0,
+  },
 }));
 
 export default useStyles;

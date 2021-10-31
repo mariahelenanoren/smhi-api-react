@@ -3,7 +3,7 @@ import { IForecast } from '../../../contexts/weatherContext';
 import getWeatherIcon from '../../../utils/getWeatherIcon';
 import { TemplateComponent } from '../../';
 import useStyles from './style';
-import { formatDate } from '../../../utils';
+import { capitalize, formatDate } from '../../../utils';
 
 interface IProps {
   forecasts: IForecast[];
@@ -20,7 +20,9 @@ export default function Row(props: IProps) {
           {forecasts.map((forecast, index) =>
             index < 7 ? (
               <Box key={index} className={classes.row}>
-                <Typography>{formatDate(forecast.validTime)}</Typography>
+                <Typography>
+                  {capitalize(formatDate(forecast.validTime))}
+                </Typography>
                 <div className={classes.forecastContainer}>
                   {forecast.parameters.map((parameter, index) =>
                     parameter.name === 't' ? (
