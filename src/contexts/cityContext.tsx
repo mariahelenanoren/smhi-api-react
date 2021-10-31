@@ -11,7 +11,7 @@ export interface ICity {
 
 interface IState {
   allCities: ICity[];
-  savedCities: ICity[];
+  savedCities: ICity[] | undefined;
 }
 
 interface IProps {
@@ -25,14 +25,25 @@ interface IContext extends IState {
 
 export const CityContext = createContext<IContext>({
   allCities: [],
-  savedCities: [],
+  savedCities: [] || undefined,
   addNewCity: () => {},
   removeCity: () => {},
 });
 
 function CityProvider(props: IProps) {
-  const [savedCities, setSavedCities] = useState<ICity[]>([]);
+  const [savedCities, setSavedCities] = useState<ICity[]>();
   const [allCities, setAllCities] = useState<ICity[]>([]);
+
+  useEffect(() => {
+    const defaultCityNames = ['Stockholm', 'Göteborg', 'Malmö'];
+    const defaultCities = allCities
+      .filter((city) => defaultCityNames.includes(city.locality))
+      .sort()
+      .reverse();
+    if (savedCities && !savedCities.length && defaultCities) {
+      setSavedCities(defaultCities);
+    }
+  }, [allCities, savedCities]);
 
   useEffect(() => {
     const prevSavedCities = JSON.parse(
@@ -46,12 +57,16 @@ function CityProvider(props: IProps) {
   }, [savedCities]);
 
   const addNewCity = (city: ICity) => {
-    setSavedCities((prevState) => [...prevState, city]);
+    if (savedCities) {
+      setSavedCities([...savedCities, city]);
+    } else {
+      setSavedCities([city]);
+    }
   };
 
   const removeCity = (city: ICity) => {
     setSavedCities(
-      savedCities.filter(
+      savedCities?.filter(
         (c) => c.longitude !== city.longitude && c.latitude !== city.latitude
       )
     );
@@ -75,8 +90,9 @@ function CityProvider(props: IProps) {
 
   const organizeData = (csv: string) => {
     /* Organizes information */
+    const cityList: ICity[] = [];
     const list = csv.split('\n');
-    list.forEach((item) => {
+    list.forEach((item, index) => {
       const i = item.split(',');
       const cityObject = {
         locality: i[0],
@@ -86,10 +102,11 @@ function CityProvider(props: IProps) {
         longitude: i[4],
       };
       /* First item of list consist of headings */
-      if (item !== list[0]) {
-        setAllCities((prevState) => [...prevState, cityObject]);
+      if (index !== 0) {
+        cityList.push(cityObject);
       }
     });
+    setAllCities(cityList);
   };
 
   return (
