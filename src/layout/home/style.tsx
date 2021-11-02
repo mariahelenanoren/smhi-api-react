@@ -1,11 +1,12 @@
 import { makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   imageContainer: {
     position: 'relative',
     height: 350,
     width: '100%',
     marginTop: '-5rem',
+    backgroundColor: theme.palette.secondary.main,
   },
   greetingContainer: {
     width: '100%',
@@ -20,8 +21,8 @@ const useStyles = makeStyles({
     position: 'absolute',
     objectFit: 'cover',
     objectPosition: 'center',
-    opacity: '0.2',
+    opacity: '0.3',
   },
-});
+}));
 
 export default useStyles;

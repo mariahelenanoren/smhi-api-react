@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   root: {
     position: 'relative',
-    paddingTop: 50,
+    paddingTop: 'calc(40px + 5rem)',
     zIndex: 1,
   },
   row: {

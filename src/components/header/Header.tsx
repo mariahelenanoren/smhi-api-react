@@ -3,12 +3,12 @@ import { useRouter } from 'next/router';
 import {
   Box,
   Typography,
-  Link,
   useMediaQuery,
   useTheme,
   Switch,
 } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
+import Link from 'next/link';
 
 import { ICity, CityContext } from '../../contexts/cityContext';
 import { TemplateComponent } from '../../components';
@@ -88,7 +88,7 @@ export default function Header() {
           value={darkMode}
           onChange={toggleDarkMode}
           name="darkMode"
-          inputProps={{ 'aria-label': 'secondary checkbox' }}
+          inputProps={{ 'aria-label': 'dark mode checkbox' }}
         />
       </Box>
     </TemplateComponent>

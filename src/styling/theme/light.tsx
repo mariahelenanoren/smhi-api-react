@@ -2,22 +2,22 @@ import { PaletteType } from '@material-ui/core';
 
 export const light = {
   palette: {
-    divider: 'rgba(000, 000, 000, 0.2)',
+    divider: '#cad0db',
     type: 'light' as PaletteType,
     primary: {
       main: '#ffffff',
-      contrastText: '#000000',
+      contrastText: '#1e2430',
     },
     secondary: {
-      main: '#efefefef',
-      contrastText: '#000000',
+      main: '#f5f7fa',
+      contrastText: '#1e2430',
     },
     text: {
-      primary: '#000000',
-      secondary: '#828282',
+      primary: '#1e2430',
+      secondary: '#535f73',
     },
-    background: {
-      default: '#ffffff',
+    searchBar: {
+      main: 'rgba(255, 255, 255, 0.8)',
     },
   },
 };

@@ -16,8 +16,8 @@ export const dark = {
       primary: '#ffffff',
       secondary: '#cccccc',
     },
-    background: {
-      default: '#ffffff',
+    searchBar: {
+      main: 'rgba(255, 255, 255, 0.3)',
     },
   },
 };

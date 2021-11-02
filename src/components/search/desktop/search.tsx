@@ -22,7 +22,7 @@ export default function Search({
         ...params.InputProps,
         classes: { input: classes.input },
         endAdornment: (
-          <InputAdornment position="end">
+          <InputAdornment position="end" className={classes.icon}>
             <SearchIcon />
           </InputAdornment>
         ),

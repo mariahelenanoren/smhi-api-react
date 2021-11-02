@@ -6,17 +6,19 @@ const useStyles = makeStyles((theme) => ({
   },
   imageContainer: {
     width: '100%',
+    height: 'calc(100% + 5rem)',
     position: 'relative',
+    backgroundColor: theme.palette.secondary.main,
+    marginTop: '-5rem',
   },
   backgroundImage: {
     position: 'absolute',
-    top: '-5rem',
     right: 0,
     left: 0,
-    height: 'calc(100% + 5rem)',
+    height: '100%',
     width: '100%',
     objectFit: 'cover',
-    opacity: '0.2',
+    opacity: '0.3',
   },
 }));
 

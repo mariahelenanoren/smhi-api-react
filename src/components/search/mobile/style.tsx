@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 2,
     paddingLeft: 2,
     borderRadius: 100,
-    backgroundColor: theme.palette.divider,
+    backgroundColor: theme.palette.searchBar.main,
   },
   input: {
     minWidth: '0 !important',
@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   icon: {
+    color: theme.palette.text.primary,
     cursor: 'pointer',
     margin: 0,
   },
