@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   open: {
     maxWidth: 270,
-    width: '100%',
+    width: '85%',
     [theme.breakpoints.only('xs')]: {
       maxWidth: '100%',
     },
@@ -54,6 +54,12 @@ const useStyles = makeStyles((theme) => ({
   },
   transparent: {
     opacity: 0,
+  },
+  link: {
+    cursor: 'pointer',
+    '&:hover': {
+      textDecoration: 'underline',
+    },
   },
 }));
 

@@ -5,7 +5,7 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
-  Switch,
+  IconButton,
 } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import Link from 'next/link';
@@ -15,6 +15,7 @@ import { TemplateComponent } from '../../components';
 import { MobileSearch, DesktopSearch } from '../search';
 import useStyles from './style';
 import { ThemeContext } from '../../contexts/themeContext';
+import { Brightness4, Brightness5 } from '@material-ui/icons';
 
 export default function Header() {
   const classes = useStyles();
@@ -50,7 +51,7 @@ export default function Header() {
         <div className={isMobileSearchOpen ? classes.transparent : undefined}>
           <Typography variant="h1">Väder</Typography>
           <Link href="/">
-            <Typography>Hem</Typography>
+            <Typography className={classes.link}>Hem</Typography>
           </Link>
         </div>
         <Autocomplete
@@ -84,12 +85,15 @@ export default function Header() {
             )
           }
         />
-        <Switch
-          value={darkMode}
-          onChange={toggleDarkMode}
-          name="darkMode"
-          inputProps={{ 'aria-label': 'dark mode checkbox' }}
-        />
+        {darkMode ? (
+          <IconButton onClick={toggleDarkMode} aria-label="toggle dark mode">
+            <Brightness5 fontSize="medium" />
+          </IconButton>
+        ) : (
+          <IconButton onClick={toggleDarkMode} aria-label="toggle dark mode">
+            <Brightness4 fontSize="medium" />
+          </IconButton>
+        )}
       </Box>
     </TemplateComponent>
   );
