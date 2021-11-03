@@ -22,7 +22,7 @@ export default function Home() {
         </Box>
         <img
           className={classes.backgroundImage}
-          src={'/assets/background.jpg'}
+          src={'/assets/clouds.jpg'}
           alt="background"
         />
       </Box>

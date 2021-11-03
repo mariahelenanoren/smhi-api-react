@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     objectFit: 'cover',
     objectPosition: 'center',
-    opacity: '0.3',
+    opacity: '0.2',
   },
 }));
 

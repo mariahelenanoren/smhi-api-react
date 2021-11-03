@@ -12,6 +12,7 @@ import {
   Progress,
 } from '../../components';
 import useStyles from './style';
+import { getBackgroundImage, getParameterValue } from '../../utils';
 
 export default function Forecast() {
   const classes = useStyles();
@@ -45,7 +46,9 @@ export default function Forecast() {
           <Box className={classes.imageContainer}>
             <img
               className={classes.backgroundImage}
-              src={'/assets/background.jpg'}
+              src={`/assets/${getBackgroundImage(
+                getParameterValue('Wsymb2', todaysForecast[0].parameters) || 1
+              )}`}
               alt="background"
             />
             <ForecastHeader city={city} forecast={todaysForecast[0]} />
