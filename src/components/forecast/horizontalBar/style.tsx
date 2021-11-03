@@ -4,8 +4,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     backgroundColor: theme.palette.secondary.main,
-    paddingTop: 15,
-    paddingBottom: 15,
   },
   barContainer: {
     width: '100%',
@@ -19,6 +17,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     marginRight: 10,
     marginLeft: 10,
+    paddingTop: 15,
+    paddingBottom: 15,
   },
   weatherIcon: {
     marginTop: 10,

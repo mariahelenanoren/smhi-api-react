@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'start',
   },
   heart: {
+    color: theme.palette.text.secondary,
     '&:hover': {
       cursor: 'pointer',
     },

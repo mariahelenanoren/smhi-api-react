@@ -61,6 +61,9 @@ const useStyles = makeStyles((theme) => ({
       textDecoration: 'underline',
     },
   },
+  icon: {
+    color: theme.palette.text.secondary,
+  },
 }));
 
 export default useStyles;

@@ -2,7 +2,7 @@ import { PaletteType } from '@material-ui/core';
 
 export const light = {
   palette: {
-    divider: '#cad0db',
+    divider: 'rgba(000, 000, 000, 0.15)',
     type: 'light' as PaletteType,
     primary: {
       main: '#ffffff',
@@ -14,7 +14,7 @@ export const light = {
     },
     text: {
       primary: '#1e2430',
-      secondary: '#535f73',
+      secondary: '#646870',
     },
     searchBar: {
       main: 'rgba(255, 255, 255, 0.8)',

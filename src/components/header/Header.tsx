@@ -87,11 +87,11 @@ export default function Header() {
         />
         {darkMode ? (
           <IconButton onClick={toggleDarkMode} aria-label="toggle dark mode">
-            <Brightness5 fontSize="medium" />
+            <Brightness5 fontSize="medium" className={classes.icon} />
           </IconButton>
         ) : (
           <IconButton onClick={toggleDarkMode} aria-label="toggle dark mode">
-            <Brightness4 fontSize="medium" />
+            <Brightness4 fontSize="medium" className={classes.icon} />
           </IconButton>
         )}
       </Box>

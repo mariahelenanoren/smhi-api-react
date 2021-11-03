@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.primary,
   },
   heart: {
+    color: theme.palette.text.secondary,
     '&:hover': {
       cursor: 'pointer',
     },
