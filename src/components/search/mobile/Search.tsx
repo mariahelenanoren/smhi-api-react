@@ -17,8 +17,8 @@ export default function Search({
 
   return (
     <TextField
-      onBlur={() => setMobileSearch(!isMobileSearchOpen)}
-      onFocus={() => setMobileSearch(!isMobileSearchOpen)}
+      onClick={() => setMobileSearch(!isMobileSearchOpen)}
+      onBlur={() => setMobileSearch(false)}
       {...params}
       variant="outlined"
       placeholder={isMobileSearchOpen ? 'Sök stad eller ord...' : undefined}
