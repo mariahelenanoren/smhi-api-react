@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { createContext, useEffect, useState } from 'react';
 
 export interface ICity {
@@ -73,7 +73,7 @@ function CityProvider(props: IProps) {
     );
   };
 
-  const fetchCities = useCallback(async () => {
+  const fetchCities = async () => {
     /* Fetches and reads CSV file */
     const response = await fetch(
       '/svenska-stader-master/src/svenska-stader.csv'
@@ -84,7 +84,7 @@ function CityProvider(props: IProps) {
     const csv = decoder.decode(result?.value);
     const organizedCities = organizeData(csv);
     return organizedCities;
-  }, []);
+  };
 
   useEffect(() => {
     fetchCities();
