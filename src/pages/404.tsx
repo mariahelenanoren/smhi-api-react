@@ -4,7 +4,7 @@ import Page from '../layout/page/page';
 
 export default function FallbackPage() {
   return (
-    <Page>
+    <Page title="Sidan kunde inte hittas">
       <Fallback />
     </Page>
   );
