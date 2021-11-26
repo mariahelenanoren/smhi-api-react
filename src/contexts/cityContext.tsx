@@ -10,7 +10,6 @@ export interface ICity {
 }
 
 interface IState {
-  allCities: ICity[];
   savedCities: ICity[] | undefined;
 }
 
@@ -21,20 +20,21 @@ interface IProps {
 interface IContext extends IState {
   addNewCity: (city: ICity) => void;
   removeCity: (city: ICity) => void;
+  setDefaultCities: (allCities: ICity[]) => void;
 }
 
 export const CityContext = createContext<IContext>({
-  allCities: [],
   savedCities: [] || undefined,
   addNewCity: () => {},
   removeCity: () => {},
+  setDefaultCities: () => {},
 });
 
 function CityProvider(props: IProps) {
   const [savedCities, setSavedCities] = useState<ICity[]>();
-  const [allCities, setAllCities] = useState<ICity[]>([]);
+  // const [allCities, setAllCities] = useState<ICity[]>([]);
 
-  useEffect(() => {
+  const setDefaultCities = (allCities: ICity[]) => {
     const defaultCityNames = ['Stockholm', 'Göteborg', 'Malmö'];
     /* Filters out default cities and sorts them in reverse alphabetically order */
     const defaultCities = allCities
@@ -44,7 +44,7 @@ function CityProvider(props: IProps) {
     if (savedCities && !savedCities.length && defaultCities) {
       setSavedCities(defaultCities);
     }
-  }, [allCities, savedCities]);
+  };
 
   useEffect(() => {
     const prevSavedCities = JSON.parse(
@@ -73,52 +73,52 @@ function CityProvider(props: IProps) {
     );
   };
 
-  const fetchCities = async () => {
-    /* Fetches and reads CSV file */
-    const response = await fetch(
-      '/svenska-stader-master/src/svenska-stader.csv'
-    );
-    const data = await response.text();
-    const organizedCities = organizeData(data);
-    return organizedCities;
-  };
+  // const fetchCities = async () => {
+  //   /* Fetches and reads CSV file */
+  //   const response = await fetch(
+  //     '/svenska-stader-master/src/svenska-stader.csv'
+  //   );
+  //   const data = await response.text();
+  //   const organizedCities = organizeData(data);
+  //   return organizedCities;
+  // };
 
-  useEffect(() => {
-    fetchCities();
-  }, []);
+  // useEffect(() => {
+  //   fetchCities();
+  // }, []);
 
-  const organizeData = (csv: string) => {
-    /* Organizes information */
-    const cityList: ICity[] = [];
-    const list = csv.split('\n');
-    list.forEach((item, index) => {
-      const i = item.split(',');
-      const cityObject = {
-        locality: i[0],
-        municipality: i[1],
-        county: i[2],
-        latitude: i[3],
-        longitude: i[4],
-      };
-      /* First item of list consist of headings */
-      if (index !== 0) {
-        cityList.push(cityObject);
-      }
-    });
-    /* Sorts list alphabetically */
-    const sortedCityList = cityList.sort((a, b) =>
-      a.locality > b.locality ? -1 : 1
-    );
-    setAllCities(sortedCityList);
-  };
+  // const organizeData = (csv: string) => {
+  //   /* Organizes information */
+  //   const cityList: ICity[] = [];
+  //   const list = csv.split('\n');
+  //   list.forEach((item, index) => {
+  //     const i = item.split(',');
+  //     const cityObject = {
+  //       locality: i[0],
+  //       municipality: i[1],
+  //       county: i[2],
+  //       latitude: i[3],
+  //       longitude: i[4],
+  //     };
+  //     /* First item of list consist of headings */
+  //     if (index !== 0) {
+  //       cityList.push(cityObject);
+  //     }
+  //   });
+  //   /* Sorts list alphabetically */
+  //   const sortedCityList = cityList.sort((a, b) =>
+  //     a.locality > b.locality ? -1 : 1
+  //   );
+  //   setAllCities(sortedCityList);
+  // };
 
   return (
     <CityContext.Provider
       value={{
-        allCities,
         savedCities,
         addNewCity,
         removeCity,
+        setDefaultCities,
       }}
     >
       {props.children}

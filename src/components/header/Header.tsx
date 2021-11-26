@@ -17,7 +17,7 @@ import useStyles from './style';
 import { ThemeContext } from '../../contexts/themeContext';
 import { Brightness4, Brightness5 } from '@material-ui/icons';
 
-export default function Header() {
+export default function Header({ allCities }: { allCities: ICity[] }) {
   const classes = useStyles();
   const router = useRouter();
   const theme = useTheme();
@@ -25,8 +25,6 @@ export default function Header() {
   const [isMobileSearchOpen, setMobileSearch] = useState(false);
   const extraSmallScreen = useMediaQuery(theme.breakpoints.only('xs'));
   const [cityList, setCityList] = useState<ICity[]>([]);
-
-  const { allCities } = useContext(CityContext);
 
   useEffect(() => {
     setCityList(allCities);

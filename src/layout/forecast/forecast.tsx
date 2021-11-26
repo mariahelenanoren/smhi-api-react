@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Box } from '@material-ui/core';
 import { useRouter } from 'next/router';
 
-import { CityContext } from '../../contexts/cityContext';
+import { ICity } from '../../contexts/cityContext';
 import { IForecast, WeatherContext } from '../../contexts/weatherContext';
 import {
   ForecastHeader,
@@ -14,11 +14,10 @@ import {
 import useStyles from './style';
 import { getBackgroundImage, getParameterValue } from '../../utils';
 
-export default function Forecast() {
+export default function Forecast({ allCities }: { allCities: ICity[] }) {
   const classes = useStyles();
   const router = useRouter();
   const { getTodaysForecast, getWeeklyForecasts } = useContext(WeatherContext);
-  const { allCities } = useContext(CityContext);
   const city = allCities.find(
     (c) =>
       c.municipality === router.query.municipality &&
