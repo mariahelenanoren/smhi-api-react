@@ -24,8 +24,13 @@ export default function Header() {
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
   const [isMobileSearchOpen, setMobileSearch] = useState(false);
   const extraSmallScreen = useMediaQuery(theme.breakpoints.only('xs'));
+  const [cityList, setCityList] = useState<ICity[]>([]);
 
   const { allCities } = useContext(CityContext);
+
+  useEffect(() => {
+    setCityList(allCities);
+  }, [allCities]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -64,7 +69,7 @@ export default function Header() {
               : classes.open
           }`}
           forcePopupIcon={false}
-          options={allCities.sort((a, b) =>
+          options={cityList.sort((a, b) =>
             a.locality === a.municipality ? -1 : 1
           )}
           getOptionLabel={(city: ICity) =>
