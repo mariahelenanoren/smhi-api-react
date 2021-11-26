@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { AppProps } from 'next/app';
+import { AppContext, AppProps } from 'next/app';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import App from 'next/app';
 
 import CityProvider from '../contexts/cityContext';
 import WeatherProvider from '../contexts/weatherContext';
@@ -10,7 +11,7 @@ import '../styling/index.css';
 import ThemeSettingsProvider from '../contexts/themeContext';
 import CustomThemeProvider from '../styling/theme/theme';
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <CityProvider>
       <WeatherProvider>
@@ -26,3 +27,10 @@ export default function App({ Component, pageProps }: AppProps) {
     </CityProvider>
   );
 }
+
+MyApp.getInitialProps = async (appContext: AppContext) => {
+  // calls page's `getInitialProps` and fills `appProps.pageProps`
+  const appProps = await App.getInitialProps(appContext);
+
+  return { ...appProps };
+};
