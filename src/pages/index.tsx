@@ -4,7 +4,7 @@ import Page from '../layout/page/page';
 
 export default function HomePage({ allCities }: { allCities: ICity[] }) {
   return (
-    <Page>
+    <Page title="Väder">
       <Home allCities={allCities} />
     </Page>
   );
