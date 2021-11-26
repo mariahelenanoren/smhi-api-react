@@ -37,11 +37,10 @@ function CityProvider(props: IProps) {
   useEffect(() => {
     const defaultCityNames = ['Stockholm', 'Göteborg', 'Malmö'];
     /* Filters out default cities and sorts them in reverse alphabetically order */
-    const defaultCities = () =>
-      allCities
-        .filter((city) => defaultCityNames.includes(city.locality))
-        .sort()
-        .reverse();
+    const defaultCities = allCities
+      .filter((city) => defaultCityNames.includes(city.locality))
+      .sort()
+      .reverse();
     if (savedCities && !savedCities.length && defaultCities) {
       setSavedCities(defaultCities);
     }
@@ -83,11 +82,16 @@ function CityProvider(props: IProps) {
     const result = await reader?.read();
     const decoder = new TextDecoder('utf-8');
     const csv = decoder.decode(result?.value);
-    organizeData(csv);
+    const organizedCities = organizeData(csv);
+    return organizedCities;
   }, []);
 
   useEffect(() => {
-    fetchCities();
+    const fetch = async () => {
+      const cities = await fetchCities();
+      setAllCities(cities);
+    };
+    fetch();
   }, [fetchCities]);
 
   const organizeData = (csv: string) => {
@@ -109,9 +113,10 @@ function CityProvider(props: IProps) {
       }
     });
     /* Sorts list alphabetically */
-    const sortedCityList = () =>
-      cityList.sort((a, b) => (a.locality > b.locality ? -1 : 1));
-    setAllCities(sortedCityList);
+    const sortedCityList = cityList.sort((a, b) =>
+      a.locality > b.locality ? -1 : 1
+    );
+    return sortedCityList;
   };
 
   return (
