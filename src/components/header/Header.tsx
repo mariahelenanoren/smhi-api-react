@@ -10,7 +10,7 @@ import {
 import { Autocomplete } from '@material-ui/lab';
 import Link from 'next/link';
 
-import { ICity, CityContext } from '../../contexts/cityContext';
+import { ICity } from '../../contexts/cityContext';
 import { TemplateComponent } from '../../components';
 import { MobileSearch, DesktopSearch } from '../search';
 import useStyles from './style';
