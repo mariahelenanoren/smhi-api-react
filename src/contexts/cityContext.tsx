@@ -37,10 +37,11 @@ function CityProvider(props: IProps) {
   useEffect(() => {
     const defaultCityNames = ['Stockholm', 'Göteborg', 'Malmö'];
     /* Filters out default cities and sorts them in reverse alphabetically order */
-    const defaultCities = allCities
-      .filter((city) => defaultCityNames.includes(city.locality))
-      .sort()
-      .reverse();
+    const defaultCities = () =>
+      allCities
+        .filter((city) => defaultCityNames.includes(city.locality))
+        .sort()
+        .reverse();
     if (savedCities && !savedCities.length && defaultCities) {
       setSavedCities(defaultCities);
     }
@@ -108,9 +109,8 @@ function CityProvider(props: IProps) {
       }
     });
     /* Sorts list alphabetically */
-    const sortedCityList = cityList.sort((a, b) =>
-      a.locality > b.locality ? -1 : 1
-    );
+    const sortedCityList = () =>
+      cityList.sort((a, b) => (a.locality > b.locality ? -1 : 1));
     setAllCities(sortedCityList);
   };
 
