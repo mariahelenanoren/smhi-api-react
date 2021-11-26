@@ -87,6 +87,10 @@ function CityProvider(props: IProps) {
   };
 
   useEffect(() => {
+    console.log(allCities);
+  }, [allCities]);
+
+  useEffect(() => {
     fetchCities();
   }, []);
 
