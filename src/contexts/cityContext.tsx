@@ -87,12 +87,8 @@ function CityProvider(props: IProps) {
   }, []);
 
   useEffect(() => {
-    const fetch = async () => {
-      const cities = await fetchCities();
-      setAllCities(cities);
-    };
-    fetch();
-  }, [fetchCities]);
+    fetchCities();
+  }, []);
 
   const organizeData = (csv: string) => {
     /* Organizes information */
@@ -116,7 +112,7 @@ function CityProvider(props: IProps) {
     const sortedCityList = cityList.sort((a, b) =>
       a.locality > b.locality ? -1 : 1
     );
-    return sortedCityList;
+    setAllCities(sortedCityList);
   };
 
   return (
