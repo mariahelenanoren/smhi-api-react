@@ -78,11 +78,8 @@ function CityProvider(props: IProps) {
     const response = await fetch(
       '/svenska-stader-master/src/svenska-stader.csv'
     );
-    const reader = response.body?.getReader();
-    const result = await reader?.read();
-    const decoder = new TextDecoder('utf-8');
-    const csv = decoder.decode(result?.value);
-    const organizedCities = organizeData(csv);
+    const data = await response.text();
+    const organizedCities = organizeData(data);
     return organizedCities;
   };
 
