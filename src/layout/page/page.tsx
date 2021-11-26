@@ -4,13 +4,17 @@ import { useRouter } from 'next/router';
 
 import useStyles from './style';
 import { Progress } from '../../components';
+import Head from 'next/head';
+import { useTheme } from '@material-ui/core';
 
 interface IProps {
   children?: React.ReactNode;
+  title: string;
 }
 
-export default function Page({ children }: IProps) {
+export default function Page({ children, title }: IProps) {
   const classes = useStyles();
+  const theme = useTheme();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -33,6 +37,17 @@ export default function Page({ children }: IProps) {
   }, [router.events]);
   return (
     <>
+      <Head>
+        <title>{title}</title>
+        <meta
+          name="theme-color"
+          content={
+            theme.palette.type === 'light'
+              ? theme.palette.secondary.light
+              : theme.palette.secondary.dark
+          }
+        />
+      </Head>
       {loading ? <Progress /> : <Box className={classes.root}>{children}</Box>}
     </>
   );
