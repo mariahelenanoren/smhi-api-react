@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
   localityContainer: {
     display: 'flex',
     alignItems: 'center',
+    marginTop: 10,
   },
   weatherIcon: {
     marginLeft: 15,
