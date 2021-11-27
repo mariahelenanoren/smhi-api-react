@@ -4,6 +4,9 @@ export const light = {
   palette: {
     divider: 'rgba(000, 000, 000, 0.15)',
     type: 'light' as PaletteType,
+    background: {
+      default: '#f5f7fa',
+    },
     primary: {
       main: '#ffffff',
       contrastText: '#1e2430',

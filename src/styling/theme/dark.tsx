@@ -4,6 +4,9 @@ export const dark = {
   palette: {
     divider: 'rgba(255, 255, 255, 0.3)',
     type: 'dark' as PaletteType,
+    background: {
+      default: '#1e2430',
+    },
     primary: {
       main: '#2C3647',
       contrastText: '#ffffff',
