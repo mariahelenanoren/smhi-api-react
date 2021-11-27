@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     marginBottom: 10,
     padding: 20,
+    boxShadow: theme.shadows[1],
     backgroundColor: theme.palette.secondary.main,
   },
   forecastContainer: {

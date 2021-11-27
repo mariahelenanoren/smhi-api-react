@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: 2,
     borderRadius: 100,
     backgroundColor: theme.palette.searchBar.main,
+    boxShadow: theme.shadows[1],
   },
   input: {
     minWidth: '0 !important',

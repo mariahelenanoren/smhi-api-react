@@ -4,6 +4,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     backgroundColor: theme.palette.secondary.main,
+    boxShadow: theme.shadows[1],
   },
   barContainer: {
     width: '100%',

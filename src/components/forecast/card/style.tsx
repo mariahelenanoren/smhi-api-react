@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'start',
+    boxShadow: theme.shadows[1],
   },
   heart: {
     color: theme.palette.text.secondary,
