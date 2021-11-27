@@ -4,12 +4,12 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.secondary.main,
     padding: 20,
+    boxShadow: theme.shadows[1],
   },
   topContainer: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'start',
-    boxShadow: theme.shadows[1],
   },
   heart: {
     color: theme.palette.text.secondary,
