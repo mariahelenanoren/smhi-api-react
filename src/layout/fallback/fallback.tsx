@@ -16,7 +16,7 @@ export default function Fallback() {
         <Link href="/">
           <Button
             className={classes.button}
-            color="primary"
+            color="secondary"
             variant="contained"
           >
             Gå tillbaka till startsidan

@@ -13,6 +13,7 @@ import {
 } from '../../components';
 import useStyles from './style';
 import { getBackgroundImage, getParameterValue } from '../../utils';
+import FallbackPage from '../../pages/404';
 
 export default function Forecast({ allCities }: { allCities: ICity[] }) {
   const classes = useStyles();
@@ -56,6 +57,8 @@ export default function Forecast({ allCities }: { allCities: ICity[] }) {
           <HorizontalBar forecasts={todaysForecast} />
           <Row forecasts={weeklyForecasts} />
         </>
+      ) : !city ? (
+        <FallbackPage />
       ) : (
         <Progress />
       )}
