@@ -1,7 +1,8 @@
 export const defaultTheme = {
   typography: {
+    fontFamily: "'Open Sans', 'Helvetica Neue', 'sans-serif'",
     h2: {
-      fontWeight: 300,
+      fontWeight: 200,
       fontSize: '5.5rem',
     },
     h3: {
@@ -13,8 +14,8 @@ export const defaultTheme = {
       fontSize: '2.8rem',
     },
     h5: {
-      fontWeight: 400,
-      fontSize: '2rem',
+      fontWeight: 300,
+      fontSize: '2.2rem',
     },
     h6: {
       fontWeight: 400,
@@ -22,6 +23,18 @@ export const defaultTheme = {
     overline: {
       fontSize: '1rem',
       opacity: '0.8',
+    },
+    caption: {
+      fontSize: '0.8rem',
+      fontWeight: 500,
+    },
+    body1: {
+      fontSize: '1rem',
+      fontWeight: 400,
+    },
+    body2: {
+      fontSize: '1.4rem',
+      fontWeight: 300,
     },
   },
   breakpoints: {
