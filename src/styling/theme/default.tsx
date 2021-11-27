@@ -21,8 +21,9 @@ export const defaultTheme = {
       fontWeight: 400,
     },
     overline: {
-      fontSize: '1rem',
+      fontSize: '0.8rem',
       opacity: '0.8',
+      textTransform: 'none',
     },
     caption: {
       fontSize: '0.8rem',

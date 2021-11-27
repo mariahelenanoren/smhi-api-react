@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <Box className={classes.root}>
       <TemplateComponent>
-        <Typography variant="caption">Maria Helena Norén © {year}</Typography>
+        <Typography variant="overline">{`Maria Helena Norén © ${year}`}</Typography>
       </TemplateComponent>
     </Box>
   );
