@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Box, Grid, Typography } from '@material-ui/core';
 
 import { TemplateComponent, Card } from '../../components';
@@ -9,11 +9,7 @@ import { formatToday } from '../../utils';
 export default function Home({ allCities }: { allCities: ICity[] }) {
   const today = new Date();
   const classes = useStyles();
-  const { savedCities, setDefaultCities } = useContext(CityContext);
-
-  useEffect(() => {
-    setDefaultCities(allCities);
-  }, [allCities, setDefaultCities]);
+  const { savedCities } = useContext(CityContext);
 
   return (
     <Box>

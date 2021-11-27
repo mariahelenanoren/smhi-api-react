@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { createContext, useEffect, useState } from 'react';
+import { getAllCities } from '../utils';
 
 export interface ICity {
   locality: string;
@@ -24,27 +25,27 @@ interface IContext extends IState {
 }
 
 export const CityContext = createContext<IContext>({
-  savedCities: [] || undefined,
+  savedCities: [],
   addNewCity: () => {},
   removeCity: () => {},
   setDefaultCities: () => {},
 });
 
 function CityProvider(props: IProps) {
-  const [savedCities, setSavedCities] = useState<ICity[]>();
-  // const [allCities, setAllCities] = useState<ICity[]>([]);
+  const [savedCities, setSavedCities] = useState<ICity[]>([]);
 
-  const setDefaultCities = (allCities: ICity[]) => {
+  const setDefaultCities = useCallback(async () => {
+    const allCities = await getAllCities();
     const defaultCityNames = ['Stockholm', 'Göteborg', 'Malmö'];
-    /* Filters out default cities and sorts them in reverse alphabetically order */
-    const defaultCities = allCities
-      .filter((city) => defaultCityNames.includes(city.locality))
-      .sort()
-      .reverse();
-    if (savedCities && !savedCities.length && defaultCities) {
+
+    const defaultCities = allCities.filter((city) =>
+      defaultCityNames.includes(city.locality)
+    );
+
+    if (!savedCities.length && defaultCities) {
       setSavedCities(defaultCities);
     }
-  };
+  }, [savedCities.length]);
 
   useEffect(() => {
     const prevSavedCities = JSON.parse(
@@ -54,20 +55,20 @@ function CityProvider(props: IProps) {
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem('savedCities', JSON.stringify(savedCities));
-  }, [savedCities]);
+    if (savedCities.length) {
+      window.localStorage.setItem('savedCities', JSON.stringify(savedCities));
+    } else {
+      setDefaultCities();
+    }
+  }, [savedCities, setDefaultCities]);
 
   const addNewCity = (city: ICity) => {
-    if (savedCities) {
-      setSavedCities([...savedCities, city]);
-    } else {
-      setSavedCities([city]);
-    }
+    setSavedCities([...savedCities, city]);
   };
 
   const removeCity = (city: ICity) => {
     setSavedCities(
-      savedCities?.filter(
+      savedCities.filter(
         (c) => c.longitude !== city.longitude && c.latitude !== city.latitude
       )
     );
