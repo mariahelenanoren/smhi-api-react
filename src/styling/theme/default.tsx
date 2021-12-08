@@ -23,7 +23,7 @@ export const defaultTheme = {
     overline: {
       fontSize: '0.8rem',
       opacity: '0.8',
-      textTransform: 'none',
+      textTransform: 'none' as const,
     },
     caption: {
       fontSize: '0.8rem',
