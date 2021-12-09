@@ -2,6 +2,8 @@
 
 ## A weather forecast website for Swedens cities and towns 
 
+### [Live demo](https://smhi-vader.netlify.app/)
+
 **SMHI weather forecast API:**  
 The forecast is gathered using SMHI (the Swedish Meteorological and Hydrological Institute) [Open Data API](http://opendata.smhi.se/apidocs/metfcst/geographic_area.html).
 
