@@ -1,6 +1,15 @@
-# Getting Started with Create React App
+# Väder
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## A weather forecast website for Swedens cities and towns 
+
+**SMHI weather forecast API:**  
+The forecast is gathered using SMHI (the Swedish Meteorological and Hydrological Institute) [Open Data API](http://opendata.smhi.se/apidocs/metfcst/geographic_area.html).
+
+**List of Swedish citites with coordinates:**  
+All of the Swedish cities along with their respective coordinates are from [Niclas Kron's Svenska Städer `.csv` list](https://github.com/sphrak/svenska-stader/). 
+
+**Weather icons:**  
+Weather icons used for displaying the weather can be downloaded from [https://erikflowers.github.io/weather-icons/](https://erikflowers.github.io/weather-icons/).
 
 ## Available Scripts
 
